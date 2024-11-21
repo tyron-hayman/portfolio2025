@@ -2,7 +2,6 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { faAsterisk } from '@fortawesome/free-solid-svg-icons';
 import AnimatedIcon from './AnimatedIcon';
-
 import Section from './Section';
 
 const skillSet : any[] = [

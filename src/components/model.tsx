@@ -69,10 +69,10 @@ export default function Model(props: JSX.IntrinsicElements['group']) {
     return (
       <>  
             <fog attach="fog" args={['#000000', 0, 2.5]} />
-            <pointLight position={[-0.5,0,0]} intensity={25} color="#6d28d9" />
+            <pointLight position={[-0.5,0,0]} intensity={50} color="#6d28d9" />
             <motion.group ref={group} scale={1.25} position={[0.4,-0.5,0]} rotation-y={rotationY} dispose={null}>
             <Float
-              speed={3} // Animation speed, defaults to 1
+              speed={4} // Animation speed, defaults to 1
               rotationIntensity={0.1} // XYZ rotation intensity, defaults to 1
               floatIntensity={0.5} // Up/down float intensity, works like a multiplier with floatingRange,defaults to 1
               floatingRange={[-0.005, -0.02]} // Range of y-axis values the object will float within, defaults to [-0.1,0.1]

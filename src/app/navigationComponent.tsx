@@ -13,7 +13,7 @@ const socials : { url : string, icon : IconDefinition }[] = [
 
 export default function NavigationComponent() {
     return (
-        <div className="mainNav fixed top-0 inset-x-0 z-40 p-10">
+        <div className="mainNav absolute top-0 inset-x-0 z-40 p-10">
             <div className="flex items-center justify-between">
                 <div className="mainLogo flex items-center justify-center">
                     <Image

@@ -7,7 +7,8 @@ export interface WorkModal {
 }
 
 export interface WorkProject {
-    title : string, 
+    title : string,
+    url: string,
     content : any, 
     techStack : any[],
     image: any,

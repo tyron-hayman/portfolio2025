@@ -3,6 +3,7 @@ import React, { Suspense } from 'react';
 import NavigationComponent from "@/app/navigationComponent";
 import Landing from '@/components/landing';
 import Work from "@/components/work";
+import ProfileCV from '@/components/Profile';
 import Slider from '@/components/slider';
 import Footer from "@/components/footer";
 import dynamic from 'next/dynamic';
@@ -22,6 +23,7 @@ export default function Home() {
             </Landing>
           <Work />
           <Slider />
+          <ProfileCV />
           <Footer />
         </div>
   );

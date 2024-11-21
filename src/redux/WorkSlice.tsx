@@ -5,12 +5,12 @@ import { IRootState, AppDispatch } from '@/app/store';
 export const WorkModalSlice = createSlice({
   name: 'workmodal_image',
   initialState: {
-    url: '#',
+    mediaUrl: '#',
     isVideo: false,
     index : 0
   },
   reducers: {
-    addImage: (state, action: PayloadAction<{ url : string, isVideo : boolean, index : number }>) => {
+    addImage: (state, action: PayloadAction<{ mediaUrl : string, isVideo : boolean, index : number }>) => {
         state = action.payload;
         return state;
     },
@@ -36,8 +36,8 @@ export const toggleModalAsync = (value : boolean) => (dispatch : AppDispatch) =>
       dispatch(openModal(value))
 }
 
-export const toggleMediaAsync = ({ url, isVideo, index } : { url : string, isVideo : boolean, index : number }) => (dispatch : AppDispatch) => {
-    dispatch(addImage({ url, isVideo, index }))
+export const toggleMediaAsync = ({ mediaUrl, isVideo, index } : { mediaUrl : string, isVideo : boolean, index : number }) => (dispatch : AppDispatch) => {
+    dispatch(addImage({ mediaUrl, isVideo, index }))
 }
 
 export default WorkModalSlice.reducer;
