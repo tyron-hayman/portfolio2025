@@ -1,0 +1,146 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+
+body {
+  line-height: 1;
+}
+
+ol, ul {
+  list-style: none;
+}
+
+blockquote, q {
+  quotes: none;
+}
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: "";
+  content: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+*, html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  cursor: none;
+}
+
+body {
+  background: #000000; /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #070115, #000000); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.mainNav .mainLogo a {
+  color: #ffffff;
+}
+.mainNav .mainLogo a:hover {
+  color: #f1c40f;
+}
+
+strong {
+  font-weight: 900;
+}
+
+.landing_wrapper img {
+  height: 100%;
+}
+
+.line {
+  height: 1px;
+  width: 100%;
+  position: relative;
+}
+
+.line svg {
+  width: 100%;
+  height: 500px;
+  position: absolute;
+  top: -250px;
+}
+
+.line svg path {
+  stroke: white;
+  stroke-width: 1px;
+  fill: none;
+}
+
+.line .box {
+  height: 40px;
+  width: 100%;
+  position: relative;
+  top: -40px;
+  z-index: 1;
+}
+
+.line .box:hover {
+  height: 500px;
+  top: -250px;
+}
+
+.siteLoader {
+  background: #000000; /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #070115, #000000); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.loader {
+  width: 5em;
+  height: 5em;
+  background: linear-gradient(-45deg, #fc00ff 0%, #00dbde 100%);
+  animation: spin 3s infinite;
+}
+
+.loader::before {
+  content: "";
+  z-index: -1;
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(-45deg, #fc00ff 0%, #00dbde 100%);
+  transform: translate3d(0, 0, 0) scale(0.95);
+  filter: blur(20px);
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(-45deg);
+  }
+  50% {
+    transform: rotate(-360deg);
+    border-radius: 50%;
+  }
+  100% {
+    transform: rotate(-45deg);
+  }
+}/*# sourceMappingURL=global.css.map */
