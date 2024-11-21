@@ -6,10 +6,11 @@ export const WorkModalSlice = createSlice({
   name: 'workmodal_image',
   initialState: {
     url: '#',
-    isVideo: false
+    isVideo: false,
+    index : 0
   },
   reducers: {
-    addImage: (state, action: PayloadAction<{ url : string, isVideo : boolean }>) => {
+    addImage: (state, action: PayloadAction<{ url : string, isVideo : boolean, index : number }>) => {
         state = action.payload;
         return state;
     },
@@ -35,8 +36,8 @@ export const toggleModalAsync = (value : boolean) => (dispatch : AppDispatch) =>
       dispatch(openModal(value))
 }
 
-export const toggleMediaAsync = ({ url, isVideo } : { url : string, isVideo : boolean }) => (dispatch : AppDispatch) => {
-    dispatch(addImage({ url, isVideo }))
+export const toggleMediaAsync = ({ url, isVideo, index } : { url : string, isVideo : boolean, index : number }) => (dispatch : AppDispatch) => {
+    dispatch(addImage({ url, isVideo, index }))
 }
 
 export default WorkModalSlice.reducer;

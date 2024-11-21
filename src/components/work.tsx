@@ -44,6 +44,7 @@ export default function Work() {
     const modalStatus = useAppSelector((state: IRootState) => state.open_modal);
     const modalImage = useAppSelector((state: IRootState) => state.add_image.url);
     const isVideo = useAppSelector((state: IRootState) => state.add_image.isVideo);
+    const modalIndex = useAppSelector((state: IRootState) => state.add_image.index);
     return (
             <>
             <div className="w-full mt-[200px] relative z-2 workContainer overflow-x-hidden flex items-center justify-center">
@@ -52,18 +53,20 @@ export default function Work() {
                 {data ?
                 <>
                 {data.pages.nodes[0].homepage.recentWork.map( (project : any, index : number) => {
-                  return <Project {...project} key={index} />
+                  return <Project {...project} index={index} key={index} />
                 })}
                 </>
                 : null}
               </div>
             </div>
-            <WorkModal isActive={modalStatus} image={modalImage} isVideo={isVideo} />
+            {data ?
+            <WorkModal isActive={modalStatus} image={modalImage} isVideo={isVideo} data={data.pages.nodes[0].homepage.recentWork} modalIndex={modalIndex} />
+            : null}
             </>
     );
 }
 
-const Project = ({title, content, techStack, image, video, isVideo} : WorkProject) => {
+const Project = ({title, content, techStack, image, video, isVideo, index} : WorkProject) => {
   const dispatch = useAppDispatch();
   const project = useRef(null)
   const isInView = useInView(project, { once: true })
@@ -77,7 +80,7 @@ const Project = ({title, content, techStack, image, video, isVideo} : WorkProjec
 
   const showModal = () => {
     dispatch(toggleModalAsync(true))
-    dispatch(toggleMediaAsync({ url, isVideo }))
+    dispatch(toggleMediaAsync({ url, isVideo, index }))
   }
 
   const HideModal = () => {
@@ -107,7 +110,7 @@ const Project = ({title, content, techStack, image, video, isVideo} : WorkProjec
   )
 }
 
-const WorkModal = ({ isActive, image, isVideo } : WorkModal) => {
+const WorkModal = ({ isActive, image, isVideo, data, modalIndex } : WorkModal) => {
   const mouse = useMouse();
   const video = useRef<any>(null);
   const smoothOptions = {damping: 40, stiffness: 300, mass: 0.5}
@@ -116,34 +119,36 @@ const WorkModal = ({ isActive, image, isVideo } : WorkModal) => {
       y: useSpring(mouse.y, smoothOptions)
   }
 
-  function loadVideo() {
-    if ( isVideo ) {
-      video.current.pause();
-      video.current.setAttribute('src', image);
-      video.current.load();
-      video.current.play();
-    }
-  }
-
-  useEffect(() => {
-    loadVideo();
-  });
-
   return(
     <motion.div
-      className={`workModal ${isVideo ? 'w-[200px]' : 'w-[400px]'} rounded-xl bg-indigo-600 fixed left-5 top-0 p-2 z-30 pointer-events-none transition-opacity duration-500 ${(isActive) ? 'opacity-100' : 'opacity-0'}`}
+      className={`workModal w-[400px] h-[400px] overflow-hidden rounded-xl bg-black fixed left-5 top-0 p-2 z-30 pointer-events-none transition-opacity duration-500 ${(isActive) ? 'opacity-100' : 'opacity-0'}`}
       style={{
         x : smoothMouse.x,
         y : smoothMouse.y,
       }}
     >
-    {isVideo ?
-      <video ref={video} width="240" height="320" muted className='w-full'>
-        <source src='#' type="video/mp4" />
-        Your browser does not support the video tag.
-      </video>
-     : <img src={image} alt="project image" className='w-full h-[auto]' />}
+      <motion.div className='absolute inset-x-0 inset-y-0 z-2 transition-all duration-500'
+        style={{
+          y : -400 * modalIndex,
+          height: 400 * data.length + "px"
+        }}
+      >
+        {data.map((media : any, index : number) => {
+          return(
+            <div className='w-full h-[400px] flex items-center justify-center'>
+              {media.isVideo ?
+                <video width="400" height="400" muted autoPlay loop className='h-[100%] aspect-[9/16]'>
+                    <source src={media.video.mediaItemUrl} type="video/mp4" />
+                     Your browser does not support the video tag.
+                   </video>
+                  : <img src={media.image.mediaItemUrl} alt="project image" className='w-full h-[auto]' />
+              }
+            </div>
+          )
+        })}
+      </motion.div>
     </motion.div>
-  );
+  )
+
 }
 
