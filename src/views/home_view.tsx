@@ -6,6 +6,7 @@ import Work from "@/components/work";
 import ProfileCV from '@/components/Profile';
 import Slider from '@/components/slider';
 import Footer from "@/components/footer";
+import StickyFooter from '@/components/StickyFooter';
 import dynamic from 'next/dynamic';
 
 const Earth = dynamic(() => import('@/components/earth'), {
@@ -25,6 +26,7 @@ export default function Home() {
           <Slider />
           <ProfileCV />
           <Footer />
+          <StickyFooter />
         </div>
   );
 }
