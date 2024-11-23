@@ -14,7 +14,7 @@ export default function Index() {
         <>
         {Scene ? 
         <motion.div className='w-full h-screen' initial={{ opacity : 0 }} animate={{ opacity : 1 }} transition={{ duration : 1 }}>
-            <Canvas shadows="basic" eventPrefix="client" camera={{ position: [0, 0, 1], fov: 50 }}>
+            <Canvas shadows="basic" eventPrefix="client" camera={{ position: [0, 0, 1], fov: 55 }}>
                     <Scene />
             </Canvas>
         </motion.div>

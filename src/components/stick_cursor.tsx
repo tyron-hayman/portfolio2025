@@ -36,7 +36,7 @@ export default function StickCursor() {
                 left: smoothMouse.x, 
                 top: smoothMouse.y,
             }} 
-            className="fixed w-[40px] h-[40px] bg-white/30 backdrop-invert block z-[100] pointer-events-none rounded-full">
+            className="fixed w-[40px] h-[40px] border-indigo-500 border-2 border-solid block z-[100] pointer-events-none rounded-full">
         </motion.div>
     );
 }

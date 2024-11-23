@@ -140,9 +140,9 @@ const WorkModal = ({ isActive, image, isVideo, data, modalIndex } : WorkModal) =
         {data.map((media : any, index : number) => {
           let bgColor: any;
           if ( (index % 2) == 0 ) {
-            bgColor = 'bg-indigo-300';
+            bgColor = 'bg-indigo-900';
           } else {
-            bgColor = 'bg-indigo-600';
+            bgColor = 'bg-indigo-700';
           }
           return(
             <div className={`w-full h-[400px] flex items-center justify-center ${bgColor}`} key={`modal${index}`}>

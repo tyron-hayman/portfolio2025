@@ -1,7 +1,7 @@
 import React, { useRef, useEffect, useState } from 'react'
 import * as THREE from 'three';
 import { useGLTF, SoftShadows, Float } from "@react-three/drei";
-import { useThree, useFrame } from '@react-three/fiber';
+import { useThree, useFrame, extend } from '@react-three/fiber';
 import { useMotionValue, useSpring, useScroll, useTransform } from 'framer-motion';
 import { motion } from 'framer-motion-3d';
 import { GLTF } from 'three-stdlib';
@@ -62,15 +62,12 @@ export default function Model(props: JSX.IntrinsicElements['group']) {
       }
     }, [])
 
-    useFrame(({ clock }) => {
-      bustRef.current.position.x = 0;
-    })
-
     return (
       <>  
-            <fog attach="fog" args={['#000000', 0, 2.5]} />
-            <pointLight position={[-0.5,0,0]} intensity={50} color="#6d28d9" />
-            <motion.group ref={group} scale={1.25} position={[0.4,-0.5,0]} rotation-y={rotationY} dispose={null}>
+            <fog attach="fog" args={['#000000', 0.7, 1.15]} />
+            <pointLight position={[-0.5,0,0]} intensity={20} color="#f14279" />
+            <motion.group ref={group} scale={1.6} position={[0.4,-0.7,0]} rotation-y={rotationY} dispose={null}>
+            <SoftShadows samples={3} />
             <Float
               speed={4} // Animation speed, defaults to 1
               rotationIntensity={0.1} // XYZ rotation intensity, defaults to 1
@@ -87,7 +84,7 @@ export default function Model(props: JSX.IntrinsicElements['group']) {
               scale={0.152}
               rotation-y={smoothMoveX}
             />
-            <motion.spotLight ref={light} angle={0.8} penumbra={0.5} castShadow intensity={30} shadow-mapSize={1014} position-z={-0.3} />
+            <motion.spotLight angle={0.8} penumbra={0.5} castShadow intensity={2} shadow-mapSize={1014} position-z={-0.3} />
             </Float>
             <motion.mesh
               castShadow
@@ -97,8 +94,11 @@ export default function Model(props: JSX.IntrinsicElements['group']) {
               ref={bustRef}
               rotation-y={smoothMoveX}
             >
-              <meshLambertMaterial color="#222222" fog={true} />
+              <meshLambertMaterial color="#404044" />
             </motion.mesh>
+            <spotLight angle={0.5} penumbra={0.5} castShadow intensity={20} shadow-mapSize={1024} shadow-bias={-0.001}>
+              <orthographicCamera attach="shadow-camera" args={[-10, 10, -10, 10, 0.1, 50]} />
+            </spotLight>
             </motion.group>
         </>
     )

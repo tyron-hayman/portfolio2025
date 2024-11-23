@@ -16,3 +16,11 @@ export interface WorkProject {
     isVideo: boolean,
     index: number
 }
+
+export interface Bubble {
+    factor: number,
+    speed: number,
+    xFactor: number,
+    yFactor: number,
+    zFactor: number
+}

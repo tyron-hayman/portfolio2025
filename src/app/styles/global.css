@@ -59,9 +59,8 @@ table {
 }
 
 body {
-  background: #000000;
-  background: -webkit-linear-gradient(to right, #070115, #000000); /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to right, #070115, #000000); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background: #000000; /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #070014, #000000); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
 .mainNav .mainLogo a {
@@ -112,9 +111,8 @@ strong {
 }
 
 .siteLoader {
-  background: #000000;
-  background: -webkit-linear-gradient(to right, #070115, #000000); /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to right, #070115, #000000); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background: #000000; /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #070014, #000000); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
 .loader {
@@ -145,18 +143,4 @@ strong {
   100% {
     transform: rotate(-45deg);
   }
-}
-@-webkit-keyframes spin {
-  0% {
-    transform: rotate(-45deg);
-  }
-  50% {
-    transform: rotate(-360deg);
-    border-radius: 50%;
-  }
-  100% {
-    transform: rotate(-45deg);
-  }
-}
-
-/*# sourceMappingURL=global.css.map */
+}/*# sourceMappingURL=global.css.map */
