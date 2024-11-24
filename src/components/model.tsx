@@ -66,7 +66,7 @@ export default function Model(props: JSX.IntrinsicElements['group']) {
       <>  
             <fog attach="fog" args={['#000000', 0.7, 1.15]} />
             <pointLight position={[-0.5,0,0]} intensity={20} color="#f14279" />
-            <motion.group ref={group} scale={1.6} position={[0.4,-0.7,0]} rotation-y={rotationY} dispose={null}>
+            <motion.group ref={group} scale={1.7} position={[0.35,-0.75,0]} rotation-y={rotationY} dispose={null}>
             <SoftShadows samples={3} />
             <Float
               speed={4} // Animation speed, defaults to 1
@@ -94,7 +94,15 @@ export default function Model(props: JSX.IntrinsicElements['group']) {
               ref={bustRef}
               rotation-y={smoothMoveX}
             >
-              <meshLambertMaterial color="#404044" />
+              <meshPhysicalMaterial
+                polygonOffset
+                polygonOffsetFactor={0}
+                roughness={0.4}
+                clearcoat={0}
+                metalness={0.3}
+                toneMapped={false}
+                color="#111111"
+              />
             </motion.mesh>
             <spotLight angle={0.5} penumbra={0.5} castShadow intensity={20} shadow-mapSize={1024} shadow-bias={-0.001}>
               <orthographicCamera attach="shadow-camera" args={[-10, 10, -10, 10, 0.1, 50]} />
