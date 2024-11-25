@@ -1,10 +1,13 @@
 import React, { useRef, useEffect, useState } from 'react'
 import * as THREE from 'three';
-import { useGLTF, SoftShadows, Float } from "@react-three/drei";
-import { useThree, useFrame, extend } from '@react-three/fiber';
+import { useGLTF, SoftShadows, Float, BakeShadows } from "@react-three/drei";
+import { useThree, useFrame } from '@react-three/fiber';
 import { useMotionValue, useSpring, useScroll, useTransform } from 'framer-motion';
 import { motion } from 'framer-motion-3d';
 import { GLTF } from 'three-stdlib';
+import { EffectComposer, Bloom, DepthOfField, ToneMapping } from '@react-three/postprocessing'
+import { Sparkles } from '@react-three/drei';
+
 
 type GLTFResult = GLTF & {
   nodes: {
@@ -60,14 +63,15 @@ export default function Model(props: JSX.IntrinsicElements['group']) {
       return () => {
         window.removeEventListener("mousemove", manageMouseMove)
       }
-    }, [])
+    }, []);
 
     return (
       <>  
             <fog attach="fog" args={['#000000', 0.7, 1.15]} />
-            <pointLight position={[-0.5,0,0]} intensity={20} color="#f14279" />
+            <pointLight position={[-0.5,0,0]} intensity={5} color="#f14279" />
+            <Sparkles count={50} scale={[1, 1, 1]} size={0.1} speed={0.25} />
             <motion.group ref={group} scale={1.7} position={[0.35,-0.75,0]} rotation-y={rotationY} dispose={null}>
-            <SoftShadows samples={3} />
+            <SoftShadows samples={4} />
             <Float
               speed={4} // Animation speed, defaults to 1
               rotationIntensity={0.1} // XYZ rotation intensity, defaults to 1
@@ -97,16 +101,17 @@ export default function Model(props: JSX.IntrinsicElements['group']) {
               <meshPhysicalMaterial
                 polygonOffset
                 polygonOffsetFactor={0}
-                roughness={0.4}
-                clearcoat={0}
-                metalness={0.3}
+                roughness={0.45}
+                clearcoat={0.1}
+                metalness={0.1}
                 toneMapped={false}
-                color="#111111"
+                color="#4c1d95"
               />
             </motion.mesh>
-            <spotLight angle={0.5} penumbra={0.5} castShadow intensity={20} shadow-mapSize={1024} shadow-bias={-0.001}>
-              <orthographicCamera attach="shadow-camera" args={[-10, 10, -10, 10, 0.1, 50]} />
-            </spotLight>
+            <EffectComposer enableNormalPass={false}>
+              <Bloom luminanceThreshold={0} mipmapBlur luminanceSmoothing={0} intensity={0.05} />
+            </EffectComposer>
+            <BakeShadows />
             </motion.group>
         </>
     )

@@ -99,14 +99,14 @@ const Project = ({title, url, content, techStack, image, video, isVideo, index} 
             <div className='techStack'>
               <ul className='flex gap-2 items-center'>
                 {techStack.map((stack : { tech : string }, index : number) => {
-                  return(<li key={`tech${index}`} className='bg-indigo-600 px-8 py-2 text-white text-sm font-normal rounded-full block'>{stack.tech}</li>)
+                  return(<li key={`tech${index}`} className='border-indigo-600 border-2 border-solid px-8 py-2 text-white text-sm font-normal rounded-full block'>{stack.tech}</li>)
                 })}
               </ul>
             </div>
           </div>
           <div>
             {url ?
-              <a href={url} target="_blank" className='transition-all duration-500 bg-indigo-600 px-8 py-2 text-white text-lg font-normal rounded-full block hover:bg-black border-indigo-600 border border-solid'>Visit</a>
+              <a href={url} target="_blank" className='transition-all duration-500 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 px-8 py-2 text-white text-lg font-normal rounded-full block hover:bg-black border-indigo-600 border border-solid'>Visit</a>
             : <p className='text-white text-lg font-normal'>Campaign Ended / Changed</p>}
           </div>
         </div>
@@ -140,9 +140,9 @@ const WorkModal = ({ isActive, image, isVideo, data, modalIndex } : WorkModal) =
         {data.map((media : any, index : number) => {
           let bgColor: any;
           if ( (index % 2) == 0 ) {
-            bgColor = 'bg-indigo-900';
+            bgColor = 'bg-gradient-to-tr from-indigo-500 via-purple-500 to-pink-500';
           } else {
-            bgColor = 'bg-indigo-700';
+            bgColor = 'bg-gradient-to-tr from-indigo-500 via-purple-500 to-pink-500';
           }
           return(
             <div className={`w-full h-[400px] flex items-center justify-center ${bgColor}`} key={`modal${index}`}>

@@ -25,7 +25,7 @@ export default function Landing({ children } : { children : any }) {
             </div>
             <div className='relative h-screen w-full flex justify-center'>
                 <div className='container self-end pb-10 overflow-hidden'>
-                    <h2 className='text-[2vw] font-normal text-pink-600 uppercase'>Hi, I'm Tyron, a</h2>
+                    <h2 className='text-[2vw] font-normal text-indigo-500 uppercase'>Hi, I'm Tyron, a</h2>
                     <h1 className='text-[10vw] font-black text-white uppercase'>FRONT END DEVELOPER</h1>
                     <p className='text-5xl font-nomral text-white'>...passionate about user experience.</p>
                 </div>
