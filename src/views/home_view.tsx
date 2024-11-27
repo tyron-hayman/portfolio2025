@@ -1,11 +1,10 @@
 'use client'
-import React, { Suspense } from 'react';
+import React, { useRef, useEffect } from 'react';
 import NavigationComponent from "@/app/navigationComponent";
 import Landing from '@/components/landing';
 import Work from "@/components/work";
 import ProfileCV from '@/components/Profile';
 import Slider from '@/components/slider';
-import Footer from "@/components/footer";
 import StickyFooter from '@/components/StickyFooter';
 import dynamic from 'next/dynamic';
 

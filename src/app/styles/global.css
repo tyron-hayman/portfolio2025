@@ -59,8 +59,13 @@ table {
 }
 
 body {
+  font-family: "Lexend", sans-serif;
   background: #000000; /* Chrome 10-25, Safari 5.1-6 */
   background: linear-gradient(to right, #070014, #000000); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.cormorant {
+  font-family: "Cormorant Garamond", serif;
 }
 
 .mainNav .mainLogo a {

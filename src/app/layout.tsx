@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
-import { Lexend } from 'next/font/google'
+import { Lexend, Cormorant_Garamond } from 'next/font/google'
 import '../app/styles/global.css';
 import {NextFont} from "next/dist/compiled/@next/font";
 import { ApolloWrapper } from "./ApolloWrapper";
 
 const interFont : NextFont = Lexend({ subsets: ["latin"], weight : ["300", "400", "600", "900"]});
+const Cormorant_Garamond_font : NextFont = Cormorant_Garamond({ subsets: ["latin"], weight: ["300", "400", "700"]});
 
 export const metadata: Metadata = {
   title: "Tyron Hayman - Web Developer + Pixel Pusher",

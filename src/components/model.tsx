@@ -68,9 +68,9 @@ export default function Model(props: JSX.IntrinsicElements['group']) {
     return (
       <>  
             <fog attach="fog" args={['#000000', 0.7, 1.15]} />
-            <pointLight position={[-0.5,0,0]} intensity={5} color="#f14279" />
+            <pointLight position={[-0.5,0,0]} intensity={0.3} color="#ffffff" />
             <Sparkles count={50} scale={[1, 1, 1]} size={0.1} speed={0.25} />
-            <motion.group ref={group} scale={1.7} position={[0.35,-0.75,0]} rotation-y={rotationY} dispose={null}>
+            <motion.group ref={group} scale={1.7} position={[0,-0.75,0]} rotation-y={rotationY} dispose={null}>
             <SoftShadows samples={4} />
             <Float
               speed={4} // Animation speed, defaults to 1
@@ -88,7 +88,7 @@ export default function Model(props: JSX.IntrinsicElements['group']) {
               scale={0.152}
               rotation-y={smoothMoveX}
             />
-            <motion.spotLight angle={0.8} penumbra={0.5} castShadow intensity={2} shadow-mapSize={1014} position-z={-0.3} />
+            <motion.spotLight angle={0.7} penumbra={0.5} castShadow intensity={20} shadow-mapSize={1014} position-z={-0.3} />
             </Float>
             <motion.mesh
               castShadow
@@ -101,16 +101,13 @@ export default function Model(props: JSX.IntrinsicElements['group']) {
               <meshPhysicalMaterial
                 polygonOffset
                 polygonOffsetFactor={0}
-                roughness={0.45}
+                roughness={0.8}
                 clearcoat={0.1}
                 metalness={0.1}
                 toneMapped={false}
-                color="#4c1d95"
+                color="#666666"
               />
             </motion.mesh>
-            <EffectComposer enableNormalPass={false}>
-              <Bloom luminanceThreshold={0} mipmapBlur luminanceSmoothing={0} intensity={0.05} />
-            </EffectComposer>
             <BakeShadows />
             </motion.group>
         </>

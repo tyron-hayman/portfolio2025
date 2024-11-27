@@ -50,7 +50,7 @@ export default function Work() {
         <Section>
             <div className="w-full mt-[200px] relative z-2 workContainer overflow-x-hidden flex items-center justify-center">
               <div className="container">
-                <h3 className='text-white text-3xl font-black tracking-tight mb-[50px] uppercase'><AnimatedIcon icon={faAsterisk} /> Most Recent Work</h3>
+                <h3 className='text-white text-3xl font-light italic tracking-tight mb-[50px] uppercase cormorant'><AnimatedIcon icon={faAsterisk} /> Most Recent Work</h3>
                 {data ?
                 <>
                 {data.pages.nodes[0].homepage.recentWork.map( (project : any, index : number) => {

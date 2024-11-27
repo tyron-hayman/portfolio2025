@@ -18,12 +18,12 @@ export default function NavigationComponent() {
                 <div className="mainLogo flex items-center justify-center">
                     <Image
                     src="/assets/logo.png"
-                    width={150}
-                    height={75}
+                    width={100}
+                    height={50}
                     alt="A Dear"
                     className='block mx-auto mb-5'
                     style={{
-                        width : "150px",
+                        width : "100px",
                         height: "auto"
                     }}
                     />

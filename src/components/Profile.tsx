@@ -49,7 +49,7 @@ export default function ProfileCV() {
                 <h3 className='text-white text-3xl font-black tracking-tight mb-[50px] uppercase'><AnimatedIcon icon={faAsterisk} /> Experience</h3>
                 {data.pages.nodes[0].homepage.workExperience.map((exp : any, index : number) => {
                     return(
-                        <div className='py-16 border-white/20 border-t border-solid block relative flex items-center justify-between'>
+                        <div className='py-16 border-white/20 border-t border-solid block relative flex items-center justify-between' key={`profile${index}`}>
                             <div className='w-9/12'>
                             <h3 className='text-white font-light uppercase text-3xl mb-5'>{exp.company}</h3>
                             <div className='text-xl text-white font-normal leading-relaxed' dangerouslySetInnerHTML={{ __html : exp.desc }} />
