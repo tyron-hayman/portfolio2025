@@ -1,7 +1,9 @@
 'use client'
 import React from 'react';
+import dynamic from 'next/dynamic';
 import { motion } from 'framer-motion';
-import { faAsterisk } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faAsterisk, faHandSparkles, faCode } from '@fortawesome/free-solid-svg-icons';
 import AnimatedIcon from './AnimatedIcon';
 import Section from './Section';
 
@@ -11,6 +13,10 @@ const skillSet : any[] = [
     { title : "Workflow", tech : ["GIT", "Docker", "NodeJS"]},
     { title : "CMS", tech : ["Wordpress", "Sanity", "Prismic"]}
 ]
+
+const Sphere = dynamic(() => import('@/components/Sphere'), {
+    ssr: false,
+});
 
 export default function Landing({ children } : { children : any }) {
 
@@ -24,13 +30,31 @@ export default function Landing({ children } : { children : any }) {
                 {children}
             </div>
             <div className='relative h-screen w-full flex justify-center items-center'>
-                <div className='container text-center'>
-                    <h2 className='text-lg font-light text-white uppercase'>Hi, I'm Tyron, a</h2>
-                    <h1 className='text-[11vw] font-normal italic text-white uppercase cormorant'>FRONT END DEVELOPER</h1>
-                    <p className='text-2xl font-light text-white'>...passionate about user experience.</p>
+                <div className='absolute inset-x-0 inset-y-0 z-0'>
+                    <Sphere />
+                </div>
+                <div className='container text-center relative z-2 pointer-events-none'>
+                    <h2 className='text-lg font-black text-white uppercase'>
+                        Hi, 
+                        <motion.span className='inline-block mx-2 text-3xl' animate={{
+                            rotate: ['0deg', '45deg', '0deg'],
+                            transition: {
+                                ease: 'easeInOut',
+                                duration: 2,
+                                repeat: Infinity,
+                            }
+                        }}><FontAwesomeIcon icon={faHandSparkles} /></motion.span>
+                        I am a 
+                    </h2>
+                    <h1 className='text-[9vw] font-light italic text-white uppercase cormorant'>FRONT END DEVELOPER</h1>
+                    <p className='text-2xl font-light text-white'>...passionate about user experience and <FontAwesomeIcon icon={faCode} /> code.</p>
                 </div>
             </div>
-            <Section>
+        </div>
+    );
+}
+
+{/* <Section>
             <div className='container mx-auto mt-[300px] relative z-2'>
                 <h3 className='text-white text-3xl font-light italic tracking-tight mb-[50px] uppercase cormorant'><AnimatedIcon icon={faAsterisk} /> About</h3>
                 <p className='text-white/90 font-light leading-relaxed text-5xl'>
@@ -59,7 +83,4 @@ export default function Landing({ children } : { children : any }) {
                     })}
                 </div>
             </div>
-            </Section>
-        </div>
-    );
-}
+            </Section> */}

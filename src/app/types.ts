@@ -1,3 +1,5 @@
+import {IconDefinition, IconProp} from "@fortawesome/fontawesome-svg-core";
+
 export interface WorkModal {
     isActive: boolean, 
     image: string,
@@ -23,4 +25,20 @@ export interface Bubble {
     xFactor: number,
     yFactor: number,
     zFactor: number
+}
+
+export interface SocialLinks {
+    url : string, 
+    icon : IconDefinition
+}
+
+export interface SocialIcons {
+    url : string,
+    icon : IconProp,
+    delay : number
+}
+
+export interface NavLinks {
+    url : string,
+    title : string,
 }

@@ -18,13 +18,9 @@ export default function Home() {
   return (
         <div className="site_wrapper">
           <NavigationComponent />
-            <Landing>
-              <Earth />
-            </Landing>
-          <Work />
-          <Slider />
-          <ProfileCV />
-          <StickyFooter />
+          <Landing>
+            <Earth />
+          </Landing>
         </div>
   );
 }

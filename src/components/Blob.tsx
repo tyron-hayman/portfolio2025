@@ -2,14 +2,13 @@ import { Canvas, useFrame } from "@react-three/fiber";
 import { useMemo, useRef, useEffect, useCallback } from "react";
 import { Color, Vector2 } from "three";
 import CustomShaderMaterial from "@/utils/Shader";
-import type { Mesh } from "three";
 
 const MovingPlane = () => {
   // This reference will give us direct access to the mesh
-  const mesh = useRef<Mesh>(null);
+  const mesh = useRef<any>(null);
   const mousePosition = useRef({ x: 0, y: 0 });
 
-  const updateMousePosition = useCallback((e) => {
+  const updateMousePosition = useCallback((e : any) => {
     mousePosition.current = { x: e.pageX, y: e.pageY };
   }, []);
 

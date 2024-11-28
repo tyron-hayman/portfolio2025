@@ -3,36 +3,37 @@ import {IconDefinition, IconProp} from "@fortawesome/fontawesome-svg-core";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faLinkedin, faGithub, faDribbble } from '@fortawesome/free-brands-svg-icons';
 import {easeOut, motion} from "framer-motion";
-import Image from 'next/image';
+import type { SocialLinks, SocialIcons, NavLinks } from "./types";
+import Link from "next/link";
 
-const socials : { url : string, icon : IconDefinition }[] = [
+const socials : SocialLinks[] = [
     { url : "https://linkedin.com/in/tyronhayman", icon : faLinkedin },
     { url : "https://github.com/tyron-hayman", icon : faGithub },
     { url : "https://dribbble.com/tyhayman", icon : faDribbble }
 ];
 
+const navLinks : NavLinks[] = [
+    { url : "/", title : "Home" },
+    { url : "/", title : "About" },
+    { url : "/", title : "Projects" }
+]
+
 export default function NavigationComponent() {
     return (
         <div className="mainNav absolute top-0 inset-x-0 z-40 p-10">
             <div className="flex items-center justify-between">
-                <div className="mainLogo flex items-center justify-center">
-                    <Image
-                    src="/assets/logo.png"
-                    width={100}
-                    height={50}
-                    alt="A Dear"
-                    className='block mx-auto mb-5'
-                    style={{
-                        width : "100px",
-                        height: "auto"
-                    }}
-                    />
+                <div className="mainLogo">
+                    <p className="block"><a href="/" className="font-black text-white text-xl uppercase">Tyron Hayman</a></p>
+                    <p className="text-md text-white/50 font-normal block flex items-center">
+                        Turning Code Into Pixels
+                    </p>
                 </div>
                 <div className="mainNavIcons">
                     <ul className="flex items-center gap-5">
-                    {socials.map((item : { url : string, icon : IconDefinition }, index : number) => {
+                    {navLinks.map((item : NavLinks, index : number) => {
+                        const linkClass = `text-white rounded-full border-white border border-solid text-lg px-5 py-2`;
                         return(
-                            <SocialIcons url={item.url} icon={item.icon} key={item.url} delay={index} />
+                            <li><Link href={item.url} className={linkClass}>{item.title}</Link></li>
                         )
                     })}
                     </ul>
@@ -42,7 +43,7 @@ export default function NavigationComponent() {
     );
 }
 
-const SocialIcons = ({ url, icon, delay } : { url : string, icon : IconProp, delay : number })  => {
+const SocialIcons = ({ url, icon, delay } : SocialIcons )  => {
     return(
         <motion.li
             initial={{ y: "-50px", opacity : 0 }}
