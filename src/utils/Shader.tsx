@@ -10,8 +10,8 @@ varying float vZ;
 void main() {
   vec4 modelPosition = modelMatrix * vec4(position, 1.0);
   
-  modelPosition.y += cos(modelPosition.x * 5.0 + u_time * 3.0) * 0.2;
-  modelPosition.y += sin(modelPosition.z * 2.0 + u_time * 2.0) * 0.2;
+  modelPosition.y += sin(modelPosition.x * 7.0 + u_time * 3.0) * 0.2;
+  modelPosition.x += sin(modelPosition.z * 7.0 + u_time * 2.0) * 0.2;
   
   vZ = modelPosition.y;
 
@@ -31,8 +31,8 @@ uniform vec2 u_mouse;
 
 
 void main() {
-  vec3 color = mix(u_colorA, u_colorB, vZ * (u_mouse.y * 0.0005) + 0.5);
-  vec3 color2 = mix(u_colorB, u_colorC, vZ * (u_mouse.x * 0.0005) + 0.5);
+  vec3 color = mix(u_colorA, u_colorB, vZ * (u_mouse.y * 0.001) + 0.5);
+  vec3 color2 = mix(u_colorB, u_colorC, vZ * (u_mouse.x * 0.001) + 0.5);
   vec3 color3 = mix(color, color2, vZ * 3.0 + 0.5);
 
   gl_FragColor = vec4(color3, 1.0);
@@ -161,7 +161,7 @@ void main() {
   float distort = 0.3 * vDisplacement * u_intensity;
 
   vec3 color = vec3(abs(vUv - 0.5) * 2.0  * (1.0 - distort), 1.0);
-  vec3 color2 = mix(color, u_colorC, 0.5);
+  vec3 color2 = mix(color, u_colorC, 0.2);
   
   gl_FragColor = vec4(color2 ,1.0);
 }

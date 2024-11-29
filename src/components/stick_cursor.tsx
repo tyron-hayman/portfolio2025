@@ -31,6 +31,7 @@ export default function StickCursor() {
     }, [])
 
     return (
+        <div>
         <motion.div 
             style={{
                 left: smoothMouse.x, 
@@ -38,5 +39,6 @@ export default function StickCursor() {
             }} 
             className="fixed w-[40px] h-[40px] border-indigo-500 border-2 border-solid block z-[100] pointer-events-none rounded-full">
         </motion.div>
+        </div>
     );
 }

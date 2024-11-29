@@ -1,5 +1,5 @@
 'use client'
-import React, { useEffect, useRef } from 'react';
+import React, { useState, useRef } from 'react';
 import type { WorkModal, WorkProject } from '@/app/types';
 import { motion, useSpring, useInView } from 'framer-motion';
 import { DocumentNode, gql, useQuery} from "@apollo/client";
@@ -47,7 +47,7 @@ export default function Work() {
     const modalIndex = useAppSelector((state: IRootState) => state.add_image.index);
     return (
       <>
-        <Section>
+        <Section sectionClass="workSection">
             <div className="w-full mt-[200px] relative z-2 workContainer overflow-x-hidden flex items-center justify-center">
               <div className="container">
                 <h3 className='text-white text-3xl font-light italic tracking-tight mb-[50px] uppercase cormorant'><AnimatedIcon icon={faAsterisk} /> Most Recent Work</h3>
@@ -97,16 +97,16 @@ const Project = ({title, url, content, techStack, image, video, isVideo, index} 
           <div>
             <h2 className='text-6xl text-white font-black uppercase mb-4'>{title.replaceAll("-", " ")}</h2>
             <div className='techStack'>
-              <ul className='flex gap-2 items-center'>
+              <ul className='flex items-center gap-[10px]'>
                 {techStack.map((stack : { tech : string }, index : number) => {
-                  return(<li key={`tech${index}`} className='border-indigo-600 border-2 border-solid px-8 py-2 text-white text-sm font-normal rounded-full block'>{stack.tech}</li>)
+                  return(<motion.li key={`tech${index}`} className='border-white border border-solid px-8 py-2 text-white text-sm font-normal rounded-full block'>{stack.tech}</motion.li>)
                 })}
               </ul>
             </div>
           </div>
           <div>
             {url ?
-              <a href={url} target="_blank" className='transition-all duration-500 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 px-8 py-2 text-white text-lg font-normal rounded-full block hover:bg-black border-indigo-600 border border-solid'>Visit</a>
+              <a href={url} target="_blank" className='transition-all duration-500 bg-white hover:bg-black px-8 py-2 text-black hover:text-white text-lg font-normal rounded-full block'>Visit</a>
             : <p className='text-white text-lg font-normal'>Campaign Ended / Changed</p>}
           </div>
         </div>
@@ -140,9 +140,9 @@ const WorkModal = ({ isActive, image, isVideo, data, modalIndex } : WorkModal) =
         {data.map((media : any, index : number) => {
           let bgColor: any;
           if ( (index % 2) == 0 ) {
-            bgColor = 'bg-gradient-to-tr from-indigo-500 via-purple-500 to-pink-500';
+            bgColor = 'bg-slate-800';
           } else {
-            bgColor = 'bg-gradient-to-tr from-indigo-500 via-purple-500 to-pink-500';
+            bgColor = 'bg-slate-900';
           }
           return(
             <div className={`w-full h-[400px] flex items-center justify-center ${bgColor}`} key={`modal${index}`}>

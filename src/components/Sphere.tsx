@@ -1,9 +1,9 @@
-import { OrbitControls, Environment } from "@react-three/drei";
 import { Canvas, useFrame } from "@react-three/fiber";
-import { useMemo, useRef } from "react";
+import { useMemo, useRef, useState, useEffect } from "react";
 import { MathUtils } from "three";
 import { SphereShaderMaterial } from "@/utils/Shader";
-import { EffectComposer, N8AO, SMAA, Bloom } from "@react-three/postprocessing"
+import { motion } from "framer-motion-3d"
+import { Edges } from '@react-three/drei'
 
 
 const Blob = () => {
@@ -26,19 +26,18 @@ const Blob = () => {
   useFrame((state) => {
     const { clock } = state;
     mesh.current.material.uniforms.u_time.value = 0.1 * clock.getElapsedTime();
-
     mesh.current.material.uniforms.u_intensity.value = MathUtils.lerp(
       mesh.current.material.uniforms.u_intensity.value,
-      hover.current ? 1.5 : 0.6,
+      hover.current ? 1.0 : 0.6,
       0.02
     );
   });
 
   return (
-    <mesh
+    <motion.mesh
       ref={mesh}
       position={[0, 0, 0]}
-      scale={1.5}
+      scale={1.7}
       onPointerOver={() => (hover.current = true)}
       onPointerOut={() => (hover.current = false)}
       receiveShadow={true}
@@ -51,7 +50,7 @@ const Blob = () => {
         uniforms={uniforms}
         wireframe={false}
       />
-    </mesh>
+    </motion.mesh>
   );
 };
 
@@ -61,10 +60,7 @@ const Scene = () => {
         <fog attach="fog" args={['black', 0, 2]} />
       <Blob />
       <ambientLight intensity={2} />
-      <spotLight position={[1, 6, 1.5]} angle={0.2} penumbra={1} intensity={2.5} castShadow shadow-mapSize={[2048, 2048]} />
-      <EffectComposer enableNormalPass={false} multisampling={0}>
-        <SMAA />
-      </EffectComposer>
+      <Edges color="white" />
     </Canvas>
   );
 };

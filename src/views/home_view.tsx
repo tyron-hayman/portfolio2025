@@ -21,6 +21,10 @@ export default function Home() {
           <Landing>
             <Earth />
           </Landing>
+          <Work />
+          <Slider />
+          <ProfileCV />
+          <StickyFooter />
         </div>
   );
 }

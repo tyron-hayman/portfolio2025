@@ -9,9 +9,9 @@ import Section from './Section';
 
 const skillSet : any[] = [
     { title : "tech", tech : ["HTML", "CSS/SCSS", "Javascript", "PHP"]},
-    { title : "Frameworks", tech : ["ReactJS", "React Native ( Junior )", "NEXTJS", "VueJS", "jQuery"]},
-    { title : "Workflow", tech : ["GIT", "Docker", "NodeJS"]},
-    { title : "CMS", tech : ["Wordpress", "Sanity", "Prismic"]}
+    { title : "Frameworks", tech : ["ReactJS", "ThreeJS ( Junior )", "NEXTJS", "jQuery"]},
+    { title : "Workflow", tech : ["GIT", "Docker", "NPM"]},
+    { title : "CMS", tech : ["Wordpress", "Sanity"]}
 ]
 
 const Sphere = dynamic(() => import('@/components/Sphere'), {
@@ -50,11 +50,7 @@ export default function Landing({ children } : { children : any }) {
                     <p className='text-2xl font-light text-white'>...passionate about user experience and <FontAwesomeIcon icon={faCode} /> code.</p>
                 </div>
             </div>
-        </div>
-    );
-}
-
-{/* <Section>
+            <Section sectionClass="aboutSection">
             <div className='container mx-auto mt-[300px] relative z-2'>
                 <h3 className='text-white text-3xl font-light italic tracking-tight mb-[50px] uppercase cormorant'><AnimatedIcon icon={faAsterisk} /> About</h3>
                 <p className='text-white/90 font-light leading-relaxed text-5xl'>
@@ -83,4 +79,7 @@ export default function Landing({ children } : { children : any }) {
                     })}
                 </div>
             </div>
-            </Section> */}
+            </Section>
+        </div>
+    );
+}

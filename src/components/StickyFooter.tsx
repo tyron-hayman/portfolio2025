@@ -16,7 +16,7 @@ export default function StickyFooter() {
                 <div className="container py-10 flex flex-wrap justify-center items-center">
                     <div className="w-full text-center">
                         <p className="text-white font-light leading-7xl text-4xl mb-16">Have an idea you want to bring to life or have a career oppertunity?</p>
-                        <a href="mailto:tyron.hayman@gmail.com" className="rounded-full text-white text-4xl px-28 py-8 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500">
+                        <a href="mailto:mr.tyronhayman@gmail.com" className="rounded-full text-white text-4xl px-28 py-8 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500">
                             Get In Touch
                         </a>
                     </div>

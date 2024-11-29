@@ -68,13 +68,6 @@ body {
   font-family: "Cormorant Garamond", serif;
 }
 
-.mainNav .mainLogo a {
-  color: #ffffff;
-}
-.mainNav .mainLogo a:hover {
-  color: #f1c40f;
-}
-
 strong {
   font-weight: 900;
 }

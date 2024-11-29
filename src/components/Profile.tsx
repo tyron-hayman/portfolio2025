@@ -35,12 +35,12 @@ const query : DocumentNode = gql`query NewQuery {
 export default function ProfileCV() {
     const { data } = useQuery(query);
     return (
-        <Section>
+        <Section sectionClass="profileSection">
         <div className='w-full py-[100px] flex justify-center relative z-2'>
             {data ?
             <div className='container flex justify-between'>
                 <div className='w-2/12'>
-                    <div className='rounded-full sticky top-20 relative !bg-cover w-full aspect-square overflow-hidden' style={{ background : `url(${data.themeSettingsNext.themeSettings.globalMainImage.mediaItemUrl}) center center no-repeat`}}>
+                    <div className='rounded-full sticky top-32 relative !bg-cover w-full aspect-square overflow-hidden' style={{ background : `url(${data.themeSettingsNext.themeSettings.globalMainImage.mediaItemUrl}) center center no-repeat`}}>
                         <div className='bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 absolute inset-x-0 inset-y-0 z-1 mix-blend-color' />
                     </div>
                 </div>

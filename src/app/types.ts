@@ -41,4 +41,5 @@ export interface SocialIcons {
 export interface NavLinks {
     url : string,
     title : string,
+    target: string
 }
