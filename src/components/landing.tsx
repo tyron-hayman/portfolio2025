@@ -64,7 +64,7 @@ export default function Landing() {
             <Section sectionClass="aboutSection">
             <div className='container mx-auto mt-[300px] relative z-2 px-5 md:px-0'>
                 <h3 className='text-white text-3xl font-light italic tracking-tight mb-[50px] uppercase cormorant'><AnimatedIcon icon={faAsterisk} /> About</h3>
-                <p className='text-white/90 font-light leading-relaxed text-4xl md:text-5xl'>
+                <p className='text-white/90 font-light !leading-relaxed text-4xl md:text-5xl'>
                     Hello! My name is Tyron, a frontend developer living in Vancouver, BC, with a passion for code, user experience and simplicity. I am currently available for 
                     freelance or full time work!
                 </p>

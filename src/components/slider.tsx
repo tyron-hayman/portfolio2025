@@ -1,5 +1,5 @@
 'use client'
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import Image from 'next/image'
 
@@ -17,6 +17,12 @@ const slides = [
 const Slider = () => {
     // Duplicate the slides array to ensure seamless looping
     const duplicatedSlides = [...slides, ...slides];
+    const [win, setWin] = useState<number>(100);
+
+    useEffect(() => {
+        let winW = window.innerWidth;
+        setWin(winW);
+    });
 
     return (
         <div className="relative w-full overflow-hidden mt-[100px] mb-[200px]">
@@ -40,7 +46,7 @@ const Slider = () => {
                 {/* Render duplicated slides */}
                 {duplicatedSlides.map((slide, index) => {
                     let slideWidth = 100 / slides.length;
-                    if ( window.innerWidth < 900 ) {
+                    if ( win < 900 ) {
                         slideWidth = 200 / slides.length;
                     }
                     return(<div key={index} className="flex-shrink-0" style={{ width: `${slideWidth}%` }}>
