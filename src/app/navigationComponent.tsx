@@ -21,12 +21,12 @@ const navLinks : NavLinks[] = [
 ]
 
 export default function NavigationComponent() {
-    const { scrollY } = useScroll()
+    const { scrollY } = useScroll();
     const [scrollDirection, setScrollDirection] = useState("down")
     const [navActive, setNavActive] = useState<boolean>(false);
 
     useMotionValueEvent(scrollY, "change", (current) => {
-        setNavActive(current > 2 ? true : false)
+            setNavActive(current > 2 ? true : false);
     })
 
     const handleNavClick = (event : MouseEvent, target : string) : void => {
@@ -36,7 +36,6 @@ export default function NavigationComponent() {
             top: targetSection?.offsetTop - 150,
             behavior: 'smooth'
         });
-        console.log(targetSection)
     }
 
     return (
@@ -48,7 +47,7 @@ export default function NavigationComponent() {
                         Turning Code Into Pixels
                     </p>
                 </div>
-                <div className="mainNavIcons">
+                <div className="mainNavIcons hidden md:block">
                     <ul className="flex items-center gap-5">
                     {navLinks.map((item : NavLinks, index : number) => {
                         let linkClass = `text-white rounded-full text-lg px-5 py-2`;

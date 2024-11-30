@@ -1,4 +1,3 @@
-import Image from 'next/image';
 import { useRef } from 'react';
 import { useInView, motion } from 'framer-motion';
 

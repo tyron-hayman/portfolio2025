@@ -11,15 +11,13 @@ const Scene = dynamic(() => import('@/components/Blob'), {
 export default function Index() {
     const wrapper = useRef<any>(null);
     return (
-        <>
+        <div className='fixed inset-x-0 inset-y-0 z-0 h-screen blur-lg'>
         {Scene ? 
         <motion.div className='w-full h-screen' initial={{ opacity : 0 }} animate={{ opacity : 1 }} transition={{ duration : 1 }}>
-            {/* <Canvas shadows="basic" eventPrefix="client" camera={{ position: [0, 0, 1], fov: 55 }}> */}
-                    <Scene />
-            {/* </Canvas> */}
+            <Scene />
         </motion.div>
         : null}
-        </>
+        </div>
     )
 
 }

@@ -8,8 +8,8 @@ const interFont : NextFont = Lexend({ subsets: ["latin"], weight : ["300", "400"
 const Cormorant_Garamond_font : NextFont = Cormorant_Garamond({ subsets: ["latin"], weight: ["300", "400", "700"]});
 
 export const metadata: Metadata = {
-  title: "Tyron Hayman - Web Developer + Pixel Pusher",
-  description: "Web Developer + Pixel Pusher",
+  title: "Tyron Hayman - Frontend Developer",
+  description: "Hi, I am Tyron, a frontend developer from Vancouver, BC, Canada. I want to turn your ideas into functional services.",
 };
 
 export default function RootLayout({

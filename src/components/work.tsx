@@ -49,7 +49,7 @@ export default function Work() {
       <>
         <Section sectionClass="workSection">
             <div className="w-full mt-[200px] relative z-2 workContainer overflow-x-hidden flex items-center justify-center">
-              <div className="container">
+              <div className="container px-5 md:px-0">
                 <h3 className='text-white text-3xl font-light italic tracking-tight mb-[50px] uppercase cormorant'><AnimatedIcon icon={faAsterisk} /> Most Recent Work</h3>
                 {data ?
                 <>
@@ -93,11 +93,12 @@ const Project = ({title, url, content, techStack, image, video, isVideo, index} 
       onMouseLeave={HideModal}
     >
         <div className='absolute inset-x-0 inset-y-0 z-3 block pointer-events-none' />
-        <div className='flex items-center justify-between'>
-          <div>
-            <h2 className='text-6xl text-white font-black uppercase mb-4'>{title.replaceAll("-", " ")}</h2>
+        <div className='md:flex items-center justify-between'>
+          <div className='mb-8 md:mb-0'>
+            <h2 className='text-4xl md:text-6xl text-white font-black uppercase mb-4'>{title.replaceAll("-", " ")}</h2>
+            <div className='block md:hidden text-xl leading-relaxed mb-4 text-white' dangerouslySetInnerHTML={{ __html: content }} />
             <div className='techStack'>
-              <ul className='flex items-center gap-[10px]'>
+              <ul className='flex items-center gap-[10px] flex-wrap'>
                 {techStack.map((stack : { tech : string }, index : number) => {
                   return(<motion.li key={`tech${index}`} className='border-white border border-solid px-8 py-2 text-white text-sm font-normal rounded-full block'>{stack.tech}</motion.li>)
                 })}
@@ -106,7 +107,7 @@ const Project = ({title, url, content, techStack, image, video, isVideo, index} 
           </div>
           <div>
             {url ?
-              <a href={url} target="_blank" className='transition-all duration-500 bg-white hover:bg-black px-8 py-2 text-black hover:text-white text-lg font-normal rounded-full block'>Visit</a>
+              <a href={url} target="_blank" className='transition-all duration-500 bg-white hover:bg-black px-8 py-2 text-black hover:text-white text-2xl font-normal rounded-full inline-block'>Visit</a>
             : <p className='text-white text-lg font-normal'>Campaign Ended / Changed</p>}
           </div>
         </div>
@@ -125,7 +126,7 @@ const WorkModal = ({ isActive, image, isVideo, data, modalIndex } : WorkModal) =
 
   return(
     <motion.div
-      className={`workModal w-[400px] h-[400px] overflow-hidden rounded-xl fixed left-5 top-0 p-2 z-30 pointer-events-none transition-opacity duration-500 ${(isActive) ? 'opacity-100' : 'opacity-0'}`}
+      className={`workModal w-[400px] h-[400px] overflow-hidden hidden md:block rounded-xl fixed left-5 top-0 p-2 z-30 pointer-events-none transition-opacity duration-500 ${(isActive) ? 'opacity-100' : 'opacity-0'}`}
       style={{
         x : smoothMouse.x,
         y : smoothMouse.y,
