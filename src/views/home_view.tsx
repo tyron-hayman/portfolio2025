@@ -44,10 +44,10 @@ export default function Home() {
               }}
             >
                   <div className='loader w-[100px] text-center'>
-                      <p className='relative text-white text-4xl font-black opacity-70 mb-5'>
+                      <p className='relative text-white text-6xl md:text-4xl font-black opacity-70 mb-5'>
                       {loadingNum}%
                       </p>
-                      <p className='block cormorant text-xl font-thin italic text-white'>{loadingText}</p>
+                      <p className='block cormorant text-2xl md:text-xl font-thin italic text-white'>{loadingText}</p>
                   </div>
             </motion.div>
             <NavigationComponent />

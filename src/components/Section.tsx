@@ -8,7 +8,7 @@ type Props = {
 
 export default function Section({ children, sectionClass } : Props) {
     const section = useRef(null)
-    const isInView = useInView(section, { once: true, amount: 0.05 })
+    const isInView = useInView(section, { once: true })
 
   return (
       <motion.div
