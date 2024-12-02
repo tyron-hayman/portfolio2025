@@ -4,7 +4,6 @@ import { useMemo, useRef, useEffect} from "react";
 import { MathUtils } from "three";
 import { SphereShaderMaterial } from "@/utils/Shader";
 import { motion } from "framer-motion-3d"
-import { CameraControls } from '@react-three/drei'
 import { useScroll, useTransform, useMotionValue, useSpring } from "framer-motion";
 
 

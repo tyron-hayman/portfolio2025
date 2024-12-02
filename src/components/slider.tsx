@@ -20,15 +20,15 @@ const Slider = () => {
     const [win, setWin] = useState<number>(100);
 
     useEffect(() => {
-        let winW = window.innerWidth;
+        const winW = window.innerWidth;
         setWin(winW);
-    });
+    },[]);
 
     return (
         <div className="relative w-full overflow-hidden mt-[100px] mb-[200px]">
             <div className='container mx-auto mb-10'>
                 <p className='text-white text-xl font-normal px-5 md:px-0'>
-                    I've been lucky to work on projects for some large companies
+                    I&lsquo;ve been lucky to work on projects for some large companies
                 </p>
             </div>
             {/* Wrapping div for seamless looping */}

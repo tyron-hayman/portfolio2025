@@ -17,7 +17,7 @@ export default function StickCursor() {
         y: useSpring(mouse.y, smoothOptions)
     }
 
-    const manageMouseMove = ( e : any ) => {
+    const manageMouseMove = ( e : MouseEvent ) => {
         const { clientX, clientY } = e;
         mouse.x.set(clientX - cursorSize / 2);
         mouse.y.set(clientY - cursorSize / 2);

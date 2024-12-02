@@ -1,5 +1,5 @@
 'use client'
-import React, { useRef, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import NavigationComponent from "@/app/navigationComponent";
 import Landing from '@/components/landing';
 import Work from "@/components/work";

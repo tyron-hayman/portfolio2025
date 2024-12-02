@@ -1,9 +1,8 @@
-import React, { useState } from 'react';
-import { motion } from 'framer-motion';
+import React from 'react';
 
 
 export default function Footer() {
-    const [date, setDate] = useState<any>(new Date());
+    const date = new Date();
 
     return (
         <div className={`fixed -right-16 bottom-24 z-[3] -rotate-90`}>

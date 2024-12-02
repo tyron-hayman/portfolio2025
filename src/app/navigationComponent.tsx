@@ -1,17 +1,8 @@
 'use client'
-import {IconDefinition, IconProp} from "@fortawesome/fontawesome-svg-core";
 import { MouseEvent, useState } from "react";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faLinkedin, faGithub, faDribbble } from '@fortawesome/free-brands-svg-icons';
-import {easeOut, motion, useMotionValueEvent, useScroll} from "framer-motion";
-import type { SocialLinks, SocialIcons, NavLinks } from "./types";
+import { useMotionValueEvent, useScroll} from "framer-motion";
+import type { NavLinks } from "./types";
 import Link from "next/link";
-
-const socials : SocialLinks[] = [
-    { url : "https://linkedin.com/in/tyronhayman", icon : faLinkedin },
-    { url : "https://github.com/tyron-hayman", icon : faGithub },
-    { url : "https://dribbble.com/tyhayman", icon : faDribbble }
-];
 
 const navLinks : NavLinks[] = [
     { url : "/", title : "Home", target: '' },
@@ -22,7 +13,6 @@ const navLinks : NavLinks[] = [
 
 export default function NavigationComponent() {
     const { scrollY } = useScroll();
-    const [scrollDirection, setScrollDirection] = useState("down")
     const [navActive, setNavActive] = useState<boolean>(false);
 
     useMotionValueEvent(scrollY, "change", (current) => {
@@ -31,9 +21,9 @@ export default function NavigationComponent() {
 
     const handleNavClick = (event : MouseEvent, target : string) : void => {
         event.preventDefault();
-        let targetSection: any = document.getElementById(target);
+        const targetSection: HTMLElement | null = document.getElementById(target);
         window.scrollTo({
-            top: targetSection?.offsetTop - 150,
+            top: targetSection!.offsetTop - 150,
             behavior: 'smooth'
         });
     }
@@ -50,7 +40,7 @@ export default function NavigationComponent() {
                 <div className="mainNavIcons hidden md:block">
                     <ul className="flex items-center gap-5">
                     {navLinks.map((item : NavLinks, index : number) => {
-                        let linkClass = `text-white rounded-full text-lg px-5 py-2`;
+                        const linkClass = `text-white rounded-full text-lg px-5 py-2`;
                         return(
                             <li key={`navItem${index}`}><Link href={item.url} className={linkClass} onClick={(event) => handleNavClick(event, item.target)}>{item.title}</Link></li>
                         )
@@ -61,15 +51,4 @@ export default function NavigationComponent() {
             </div>
         </div>
     );
-}
-
-const SocialIcons = ({ url, icon, delay } : SocialIcons )  => {
-    return(
-        <motion.li
-            initial={{ y: "-50px", opacity : 0 }}
-            animate={{ y: "0px", opacity: 1 }}
-            transition={{ duration: 0.5, ease : easeOut, delay: 0.25 * delay }}
-            className="text-white text-2xl hover:text-indigo-500"><a href={url} target="_blank"
-        ><FontAwesomeIcon icon={icon} /></a></motion.li>
-    )
 }

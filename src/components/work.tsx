@@ -1,7 +1,7 @@
 'use client'
-import React, { useState, useRef } from 'react';
+import React from 'react';
 import type { WorkModal, WorkProject } from '@/app/types';
-import { motion, useSpring, useInView } from 'framer-motion';
+import { motion, useSpring } from 'framer-motion';
 import { DocumentNode, gql, useQuery} from "@apollo/client";
 import { faAsterisk } from '@fortawesome/free-solid-svg-icons';
 import AnimatedIcon from './AnimatedIcon';
@@ -10,6 +10,8 @@ import { IRootState } from '@/app/store';
 import useMouse from '@/utils/useMouse';
 import { useAppDispatch, useAppSelector } from '@/app/hooks';
 import Section from './Section';
+import type { RecentWork } from '@/app/types';
+import Image from 'next/image';
 
 const query : DocumentNode = gql`query NewQuery {
   pages {
@@ -53,7 +55,7 @@ export default function Work() {
                 <h3 className='text-white text-3xl font-light italic tracking-tight mb-[50px] uppercase cormorant'><AnimatedIcon icon={faAsterisk} /> Most Recent Work</h3>
                 {data ?
                 <>
-                {data.pages.nodes[0].homepage.recentWork.map( (project : any, index : number) => {
+                {data.pages.nodes[0].homepage.recentWork.map( (project : RecentWork, index : number) => {
                   return <Project {...project} index={index} key={index} />
                 })}
                 </>
@@ -115,9 +117,8 @@ const Project = ({title, url, content, techStack, image, video, isVideo, index} 
   )
 }
 
-const WorkModal = ({ isActive, image, isVideo, data, modalIndex } : WorkModal) => {
+const WorkModal = ({ isActive, data, modalIndex } : WorkModal) => {
   const mouse = useMouse();
-  const video = useRef<any>(null);
   const smoothOptions = {damping: 40, stiffness: 300, mass: 0.5}
   const smoothMouse = {
       x: useSpring(mouse.x, smoothOptions),
@@ -138,8 +139,8 @@ const WorkModal = ({ isActive, image, isVideo, data, modalIndex } : WorkModal) =
           height: 400 * data.length + "px"
         }}
       >
-        {data.map((media : any, index : number) => {
-          let bgColor: any;
+        {data.map((media : RecentWork, index : number) => {
+          let bgColor: string;
           if ( (index % 2) == 0 ) {
             bgColor = 'bg-slate-800';
           } else {
@@ -152,7 +153,7 @@ const WorkModal = ({ isActive, image, isVideo, data, modalIndex } : WorkModal) =
                     <source src={media.video.mediaItemUrl} type="video/mp4" />
                      Your browser does not support the video tag.
                    </video>
-                  : <img src={media.image.mediaItemUrl} alt="project image" className='w-[90%] h-[auto]' />
+                  : <Image src={media.image.mediaItemUrl} width={400} height={400} alt="project image" className='w-[90%] h-[auto]' />
               }
             </div>
           )

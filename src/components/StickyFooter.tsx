@@ -1,10 +1,8 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHeart, faArrowAltCircleRight } from '@fortawesome/free-solid-svg-icons';
-import { motion } from "framer-motion";
-import { useState } from 'react';
 
 export default function StickyFooter() {
-    const [date, setDate] = useState<Date>(new Date());
+    const date = new Date();
 
     return(
     <div className='relative w-full flex items-center justify-center py-20'>
@@ -12,7 +10,7 @@ export default function StickyFooter() {
         <div className='w-full md:w-1/2'><h3 className='text-6xl text-white font-normal'>Get In Touch</h3></div>
         <div className='py-10'>
             <a href='mailto:mr.tyronhayman@gmail.com' className='rounded-3xl bg-white text-black text-4xl md:text-6xl px-5 py-2'>
-                Let's Talk <FontAwesomeIcon icon={faArrowAltCircleRight} />
+                Let&lsquo;s Talk <FontAwesomeIcon icon={faArrowAltCircleRight} />
             </a>
         </div>
         <div className='w-full border-white/10 border-t border-solid py-5 mt-5 text-center'>

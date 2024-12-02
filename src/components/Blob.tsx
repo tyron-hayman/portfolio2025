@@ -4,7 +4,6 @@ import { Color, Vector2 } from "three";
 import CustomShaderMaterial from "@/utils/Shader";
 
 const MovingPlane = () => {
-  // This reference will give us direct access to the mesh
   const mesh = useRef<any>(null);
   const mousePosition = useRef({ x: 0, y: 0 });
 
@@ -26,11 +25,13 @@ const MovingPlane = () => {
 
   useFrame((state) => {
     const { clock } = state;
-    mesh.current.material.uniforms.u_time.value = clock.getElapsedTime() / 3;
-    mesh.current.material.uniforms.u_mouse.value = new Vector2(
-        mousePosition.current.x,
-        mousePosition.current.y
-      );
+    if ( mesh.current ) {
+      mesh.current.material.uniforms.u_time.value = clock.getElapsedTime() / 3;
+      mesh.current.material.uniforms.u_mouse.value = new Vector2(
+          mousePosition.current.x,
+          mousePosition.current.y
+        );
+    }
   });
 
   useEffect(() => {
@@ -66,3 +67,4 @@ const Scene = () => {
 
 
 export default Scene;
+

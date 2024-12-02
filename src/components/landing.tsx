@@ -7,7 +7,7 @@ import { faAsterisk, faHandSparkles, faCode } from '@fortawesome/free-solid-svg-
 import AnimatedIcon from './AnimatedIcon';
 import Section from './Section';
 
-const skillSet : any[] = [
+const skillSet : Array<{title : string; tech : Array<string>}> = [
     { title : "tech", tech : ["HTML", "CSS/SCSS", "Javascript", "PHP"]},
     { title : "Frameworks", tech : ["ReactJS", "ThreeJS ( Junior )", "NEXTJS", "jQuery"]},
     { title : "Workflow", tech : ["GIT", "Docker", "NPM"]},
@@ -19,10 +19,6 @@ const Sphere = dynamic(() => import('@/components/Sphere'), {
 });
 
 export default function Landing() {
-
-    let heading1: string = "TYRON HAYMAN";
-    let heading2: string = "FRONT END DEVELOPER";
-    let subheading: string = "...with a passion for user experience.";
 
     return (
         <div className={`landing_wrapper relative`}>
@@ -74,11 +70,11 @@ export default function Landing() {
             <div className='container mx-auto mt-[150px] relative z-2 px-5 md:px-0'>
                 <h3 className='text-white text-3xl font-light italic tracking-tight mb-[50px] uppercase cormorant'><AnimatedIcon icon={faAsterisk} /> My Skills</h3>
                 <div className='flex items-start gap-[20px] flex-wrap md:flex-nowrap'>
-                    {skillSet.map((skill : { title : string, tech : any[] }, index : number) => {
+                    {skillSet.map((skill : {title : string; tech : Array<string>}, index : number) => {
                         return(
                             <div key={`skill${index}`} className='flex flex-wrap w-full md:w-1/4 border-white/50 border border-solid rounded-xl p-5 min-h-[280px]'>
                                 <div className='w-full'>
-                                {skill.tech.map((stack : any[], index_stack : number) => {
+                                {skill.tech.map((stack : string, index_stack : number) => {
                                     return(
                                         <p key={`stack${index_stack}`} className='text-white font-normal text-xl'>{stack}</p>
                                     )

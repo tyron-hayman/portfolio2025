@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { PayloadAction } from '@reduxjs/toolkit';
-import { IRootState, AppDispatch } from '@/app/store';
+import { AppDispatch } from '@/app/store';
 
 export const WorkModalSlice = createSlice({
   name: 'workmodal_image',

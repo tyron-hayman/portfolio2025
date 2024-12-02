@@ -1,10 +1,10 @@
 'use client'
-import React, { useState } from 'react';
-import { motion } from 'framer-motion';
+import React from 'react';
 import { DocumentNode, gql, useQuery} from "@apollo/client";
 import { faAsterisk } from '@fortawesome/free-solid-svg-icons';
 import AnimatedIcon from './AnimatedIcon';
 import Section from './Section';
+import type { WorkExp } from '@/app/types';
 
 const query : DocumentNode = gql`query NewQuery {
   pages {
@@ -47,7 +47,7 @@ export default function ProfileCV() {
                 <div className='w-full md:w-9/12'>
                 <div className='mb-[100px] text-white leading-loose text-3xl font-normal' dangerouslySetInnerHTML={{ __html: data.pages.nodes[0].homepage.about.content}}></div>
                 <h3 className='text-white text-3xl font-black tracking-tight mb-[50px] uppercase'><AnimatedIcon icon={faAsterisk} /> Experience</h3>
-                {data.pages.nodes[0].homepage.workExperience.map((exp : any, index : number) => {
+                {data.pages.nodes[0].homepage.workExperience.map((exp : WorkExp, index : number) => {
                     return(
                         <div className='py-16 border-white/20 border-t border-solid block relative flex items-center justify-between flex-wrap md:flex-nowrap' key={`profile${index}`}>
                             <div className='w-full md:w-9/12 mb-10 md:mb-0'>
