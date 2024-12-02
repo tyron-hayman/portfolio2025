@@ -34,7 +34,7 @@ export default function NavigationComponent() {
                 <div className="mainLogo transition-all duration-500 hover:scale-120">
                     <p className="block"><a href="/" className="font-black text-white text-xl uppercase">Tyron Hayman</a></p>
                     <p className="text-md text-white/50 font-normal block flex items-center">
-                        Turning Code Into Pixels
+                        Frontend Developer &amp; Problem solver
                     </p>
                 </div>
                 <div className="mainNavIcons hidden md:block">

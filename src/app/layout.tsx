@@ -20,7 +20,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${interFont.className} antialiased`}
+        className={`${interFont.className} ${Cormorant_Garamond_font.style.fontFamily} antialiased`}
       >
           <ApolloWrapper>{children}</ApolloWrapper>
       </body>

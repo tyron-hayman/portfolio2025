@@ -1,7 +1,7 @@
 import {IconDefinition, IconProp} from "@fortawesome/fontawesome-svg-core";
 
 export type Props = {
-    children: string | JSX.Element | JSX.Element[] | (() => JSX.Element)
+    children: string | JSX.Element | JSX.Element[] | (() => JSX.Element) | any
 }
 
 export interface WorkModal {
