@@ -1,5 +1,5 @@
 'use client'
-import React from 'react';
+import React, { Suspense } from 'react';
 import dynamic from 'next/dynamic';
 import { motion } from 'framer-motion';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -24,7 +24,9 @@ export default function Landing() {
         <div className={`landing_wrapper relative`}>
             <div className='relative h-screen w-full flex justify-center items-center'>
                 <div className='absolute inset-x-0 inset-y-0 z-0'>
-                    <Sphere />
+                    <Suspense fallback={null}>
+                        <Sphere />
+                    </Suspense>
                 </div>
                 <div className='container text-center relative z-2 pointer-events-none'>
                     <h2 className='text-2xl md:text-lg font-black text-white uppercase'>
