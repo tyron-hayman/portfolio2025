@@ -1,12 +1,22 @@
 import type { Metadata } from "next";
-import { Lexend, Cormorant_Garamond } from 'next/font/google'
+import { Instrument_Sans, Poppins } from 'next/font/google'
 import '../app/styles/global.css';
-import {NextFont} from "next/dist/compiled/@next/font";
 import { ApolloWrapper } from "./ApolloWrapper";
 import { GoogleAnalytics } from '@next/third-parties/google'
 
-const interFont : NextFont = Lexend({ subsets: ["latin"], weight : ["300", "400", "600", "900"]});
-const Cormorant_Garamond_font : NextFont = Cormorant_Garamond({ subsets: ["latin"], weight: ["300", "400", "700"]});
+const instrument_sans = Instrument_Sans({
+  subsets: ['latin'],
+  weight: ["400", "600", "700"],
+  display: 'swap',
+  variable: '--font-instrument_sans',
+});
+
+const poppins = Poppins({
+  subsets: ['latin'],
+  weight: ["400", "600", "900"],
+  display: 'swap',
+  variable: '--font-bondini',
+});
 
 export const metadata: Metadata = {
   title: "Tyron Hayman - Frontend Developer",
@@ -20,8 +30,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <meta name="viewport" content="initial-scale = 1.0"></meta>
+      <meta name="mobile-web-app-capable" content="yes"></meta>
+      <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"></meta>
       <body
-        className={`${interFont.className} ${Cormorant_Garamond_font.style.fontFamily} antialiased`}
+        className={`${instrument_sans.variable} ${poppins.variable} antialiased`}
       >
           <ApolloWrapper>{children}</ApolloWrapper>
           <GoogleAnalytics gaId="G-G084CLT275" />

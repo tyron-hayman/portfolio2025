@@ -9,7 +9,7 @@ const Scene = dynamic(() => import('@/components/Blob'), {
 
 export default function Index() {
     return (
-        <div className='fixed inset-x-0 inset-y-0 z-0 h-screen blur-lg'>
+        <div className='fixed inset-x-0 inset-y-0 z-0 h-screen blur-[10px]'>
         {Scene ? 
         <motion.div className='w-full h-screen' initial={{ opacity : 0 }} animate={{ opacity : 1 }} transition={{ duration : 1 }}>
             <Suspense fallback={null}>
