@@ -40,6 +40,7 @@ const MovingPlane = () => {
 
         uniform vec2 u_resolution;
         uniform float u_time;
+        uniform vec2 u_mouse;
         varying vec2 vUv;
 
         // Smooth minimum function for blending blobs
@@ -93,6 +94,10 @@ const MovingPlane = () => {
     const { clock } = state;
     if ( mesh.current ) {
       mesh.current.material.uniforms.u_time.value = clock.getElapsedTime();
+      mesh.current.material.uniforms.u_mouse.value = new Vector2(
+        mousePosition.current.x,
+        mousePosition.current.y
+      );
     }
   });
 

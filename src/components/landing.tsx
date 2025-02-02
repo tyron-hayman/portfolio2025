@@ -1,15 +1,5 @@
 "use client";
 import React, { useContext } from "react";
-import dynamic from "next/dynamic";
-import { motion } from "framer-motion";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faAsterisk,
-  faHandSparkles,
-  faCode,
-} from "@fortawesome/free-solid-svg-icons";
-import AnimatedIcon from "./AnimatedIcon";
-import Section from "./Section";
 import PageDataContext from "@/lib/getPageData";
 
 const skillSet: Array<{ title: string; tech: Array<string> }> = [

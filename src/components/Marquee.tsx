@@ -9,7 +9,7 @@ import { faAsterisk } from "@fortawesome/free-solid-svg-icons";
     const iconClass = "text-2xl align-middle leading-[1]"
 
     return (
-        <div className="marquee bg-indigo-500/10 py-10">
+        <div className="marquee">
             <ul className="marquee__content">
             <li className={textClass}>{phrase} <FontAwesomeIcon className={iconClass} icon={faAsterisk} /></li>
             <li className={textClass}>{phrase} <FontAwesomeIcon className={iconClass} icon={faAsterisk} /></li>

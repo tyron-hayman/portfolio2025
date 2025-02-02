@@ -27,6 +27,15 @@ export default function NavigationComponent() {
         pageData.setCursorState("")
     }
 
+    const handleHoverContact = () => {
+        pageData.setCursorState("email")
+    }
+
+    const handleHoverLeaveContact = () => {
+        pageData.setCursorState("")
+    }
+
+
     const handleNavClick = (event : MouseEvent, target : string) : void => {
         event.preventDefault();
         const targetSection: HTMLElement | null = document.getElementById(target);
@@ -37,7 +46,7 @@ export default function NavigationComponent() {
     }
 
     return (
-        <div className={`mainNav absolute md:fixed top-0 inset-x-0 z-40 p-4 xl:p-10 transition-all mix-blend-difference`}>
+        <div className={`mainNav absolute md:fixed top-0 inset-x-0 z-40 p-4 xl:p-10 transition-all backdrop-blur-md`}>
             <div className="flex items-center justify-between">
                 <div className="mainLogo transition-all duration-500 hover:scale-120 w-1/3">
                     <p className="text-lg text-white font-bold uppercase block flex items-center">
@@ -50,12 +59,14 @@ export default function NavigationComponent() {
                 <div className="mainNavIcons w-1/3 hidden md:block">
                     <ul className="flex items-center gap-5 justify-end">
                     {navLinks.map((item : NavLinks, index : number) => {
-                        const linkClass = `text-white rounded-full text-lg px-5 py-2`;
+                        const linkClass = `text-white font-bold rounded-full text-lg px-5 py-2`;
                         return(
                             <li key={`navItem${index}`}><Link href={item.url} className={linkClass} onClick={(event) => handleNavClick(event, item.target)} onMouseOver={handleHover} onMouseLeave={handleHoverLeave}>{item.title}</Link></li>
                         )
                     })}
-                    <li><Link href="mailto:mr.tyronhayman@gmail.com" className="transition duration-500 text-white rounded-full text-lg px-5 py-2 bg-black hover:bg-white hover:text-black">Contact</Link></li>
+                    {pageData.pageData ?
+                        <li><Link href={`mailto:${pageData.pageData.pages.nodes[0].homepage.footerEmail}`} className="transition font-bold duration-500 text-white rounded-full text-lg px-5 py-2 bg-black hover:bg-white hover:text-black" onMouseOver={handleHoverContact} onMouseLeave={handleHoverLeaveContact}>Contact</Link></li>
+                    : null}
                     </ul>
                 </div>
             </div>

@@ -6,6 +6,7 @@ import { gql } from '@apollo/client';
 const PageDataContext = createContext<any>([]);
 
 const GetPageData = ({ children } : { children : any }) => {
+    const [loading, setLoading] = useState<boolean>(true);
     const [pageData, setPageData] = useState<any>(null);
     const [cursorState, setCursorState] = useState<string>("");
     const getPageData = gql`
@@ -80,7 +81,7 @@ const GetPageData = ({ children } : { children : any }) => {
     }
             
     return (
-        <PageDataContext.Provider value={{ pageData, cursorState, setCursorState}}>
+        <PageDataContext.Provider value={{ pageData, cursorState, setCursorState, loading, setLoading}}>
           {children}
         </PageDataContext.Provider>
       );
