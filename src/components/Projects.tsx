@@ -25,10 +25,10 @@ export default function Projects() {
     return (
       <div
         ref={projectWrapper}
-        className="w-full relative"
+        className="w-full relative projectSection"
       >
-        <motion.div className="container mx-auto mb-80 sticky top-[100px]" style={{ scale, filter : blur, opacity }}>
-          <h2 className="text-white text-7xl font-normal bondini">Recent Work</h2>
+        <motion.div className="container mx-auto mb-40 md:mb-80 sticky top-[100px]" style={{ scale, filter : blur, opacity }}>
+          <h2 className="text-white text-5xl md:text-7xl font-normal bondini px-5 md:px-0">Recent Work</h2>
         </motion.div>
         <div ref={projectContainer} className="w-full relative">
         {pageData.pageData ? (
@@ -72,7 +72,7 @@ const ProjectBox = ({
   const pageData = useContext(PageDataContext);
   const rotate = useTransform(progress, [0, 1], ["-5deg", "-15deg"]);
   const scale = useTransform(progress, [0, 1], [1.1, 1.4]);
-  const isInView = useInView(projectCard, { amount : 0.4, once: true })
+  const isInView = useInView(projectCard, { amount : 0.4 })
 
   const handleHover = () => {
     pageData.setCursorState("projects");
@@ -89,6 +89,8 @@ const ProjectBox = ({
   useEffect(() => {
     if ( isInView ) {
       setActive(index)
+    } else {
+      setActive(index - 1)
     }
   }, [isInView]);
 
@@ -119,9 +121,9 @@ const ProjectNav = ({ data, activeIndex = 0 } : ProjectNav) => {
   const projectNavTitle = useRef(null)
   const [active, setActive] = useState<number>(activeIndex)
 
-  // useEffect(() => {
-  //   setActive(activeIndex);
-  // },[activeIndex])
+  useEffect(() => {
+    setActive(activeIndex);
+  },[activeIndex])
 
   return(
     <motion.div 
@@ -129,15 +131,14 @@ const ProjectNav = ({ data, activeIndex = 0 } : ProjectNav) => {
       ref={projectNav}
     >
       <div className="sticky top-0 h-screen w-full flex items-center justify-center">
-        <h2 ref={projectNavTitle} className="text-white font-black uppercase text-[5vw] w-full relative text-center mix-blend-difference overflow-hidden">
+        <h2 ref={projectNavTitle} className="text-white font-black uppercase text-[8vw] md:text-[5vw] w-2/3 md:w-full relative text-center mix-blend-difference">
             {data.map((item : any, index : number) => {
               return(
-                <motion.span 
+                <span 
                   key={`title${index}`} 
-                  className={`block w-full ${index != activeIndex ? 'absolute' : null}`}
-                  animate={{ opacity : index != activeIndex ? 0 : 1 }}
-                  transition={{ duration : 0.5, ease : 'easeInOut' }}
-                >{item.title}</motion.span>
+                  className={`absolute w-full transition-all duration-500 w-full text-center left-0 top-0`}
+                  style={{ opacity : index != active ? 0 : 1 }}
+                >{item.title}</span>
               )
             })}
         </h2>
@@ -148,7 +149,7 @@ const ProjectNav = ({ data, activeIndex = 0 } : ProjectNav) => {
               return(
                 <motion.span key={`tab${index}`} 
                   className={`block h-[5px] rounded-full bg-white my-5`}
-                  animate={{ width : index == activeIndex ? 15 : 5, background : index == activeIndex ? 'rgba(255,255,255,1.0)' : 'rgba(255,255,255,0.5)' }}
+                  animate={{ width : index == active ? 15 : 5, background : index == active ? 'rgba(255,255,255,1.0)' : 'rgba(255,255,255,0.5)' }}
                   transition={{ duration : 0.3, ease : "easeInOut" }}
                 ></motion.span>
               )
@@ -156,18 +157,14 @@ const ProjectNav = ({ data, activeIndex = 0 } : ProjectNav) => {
             </div>
         </div>
 
-        <div className="absolute inset-x-0 bottom-0 p-5 flex items-center justify-center">
-          <div>
-            <h3 className="text-white font-black uppercase text-center text-sm relative h-[30px] w-[400px] overflow-hidden">
-            <motion.span className="absolute left-0 top-0 w-full" animate={{ y : -30 * activeIndex}} transition={{ duration : 0.35, ease : "easeInOut"}}>
+        <div className="absolute inset-x-0 bottom-10 p-5 flex items-center justify-center">
+            <h3 className="text-white font-black uppercase text-center text-sm relative block w-full">
               {data.map((item : any, index : number) => {
                 return(
-                  <span key={`role${index}`} className="block h-[30px]">{item.role}</span>
+                  <motion.span key={`role${index}`} className="w-full block absolute text-center left-0 top-0" style={{ opacity : index != active ? 0 : 1 }}>{item.role}</motion.span>
                 )
               })}
-            </motion.span>
             </h3>
-          </div>
         </div>
       </div>
     </motion.div>

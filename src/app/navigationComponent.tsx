@@ -7,7 +7,7 @@ import PageDataContext from "@/lib/getPageData"
 
 const navLinks : NavLinks[] = [
     { url : "/", title : "About", target: 'aboutSection' },
-    { url : "/", title : "Projects", target: 'workSection' },
+    { url : "/", title : "Projects", target: 'projectSection' },
 ]
 
 export default function NavigationComponent() {
@@ -38,15 +38,15 @@ export default function NavigationComponent() {
 
     const handleNavClick = (event : MouseEvent, target : string) : void => {
         event.preventDefault();
-        const targetSection: HTMLElement | null = document.getElementById(target);
+        const targetSection: any = document.getElementsByClassName(target);
         window.scrollTo({
-            top: targetSection!.offsetTop - 150,
+            top: targetSection[0]!.offsetTop,
             behavior: 'smooth'
         });
     }
 
     return (
-        <div className={`mainNav absolute md:fixed top-0 inset-x-0 z-40 p-4 xl:p-10 transition-all backdrop-blur-md`}>
+        <div className={`mainNav absolute md:fixed top-0 inset-x-0 z-40 p-4 xl:px-10 py-5 transition-all backdrop-blur-md`}>
             <div className="flex items-center justify-between">
                 <div className="mainLogo transition-all duration-500 hover:scale-120 w-1/3">
                     <p className="text-lg text-white font-bold uppercase block flex items-center">

@@ -27,16 +27,16 @@ export default function About() {
   return (
     <motion.div
       ref={aboutWrapper}
-      className="relative w-full py-20 md:py-40"
+      className="relative w-full py-20 md:py-40 aboutSection"
       animate={{ y: isInView ? 0 : 50, opacity: isInView ? 1 : 0 }}
       transition={{ duration: 1, ease: "easeInOut" }}
     >
       {pageData.pageData ? (
         <div className="container mx-auto flex flex-wrap justify-between">
-          <div className="w-full">
+          <div className="w-full px-5 md:px-0">
             <motion.h2
               ref={aboutTitle}
-              className="text-white text-8xl leading-[8xl] mb-10 font-black bondini w-2/3"
+              className="text-white text-5xl leading-[5xl] md:text-8xl md:leading-[8xl] mb-10 font-black bondini w-full lg:w-2/3"
               style={{ y }}
               transition={{ ease: "easeInOut" }}
             >
@@ -45,7 +45,7 @@ export default function About() {
                 .replace(/<\/p>/g, "")}
             </motion.h2>
           </div>
-          <div className="w-full xl:w-3/12 mb-10 md:mb-20 xl:mb-0">
+          <div className="w-full lg:w-3/12 mb-10 md:mb-20 xl:mb-0 px-5 md:px-0">
             <motion.div
               className="w-full aspect-square rounded-3xl !bg-cover graysale black"
               style={{
@@ -57,10 +57,10 @@ export default function About() {
               onMouseLeave={handleHoverLeave}
             ></motion.div>
           </div>
-          <div className="w-full xl:w-7/12">
+          <div className="w-full lg:w-7/12 px-5 md:px-0">
             <motion.h2
                 ref={aboutContent}
-                className="text-white text-3xl leading-relaxed font-normal"
+                className="text-white text-2xl md:text-3xl leading-relaxed font-normal"
                 style={{ y: y_sub }}
                 transition={{ ease: "easeInOut" }}
                 >

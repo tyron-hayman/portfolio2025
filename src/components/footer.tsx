@@ -17,31 +17,31 @@ export default function Footer() {
     }, []);
 
     return (
-        <div className="relative">
+        <div className="relative px-5 md:px-0">
         {pageData.pageData ? (
             <>
            <div className='container mx-auto mt-20 md:mt-60 md:grid'>
                 <h2 className='text-[18vw] md:text-[17vw] text-white font-black bondini w-full mb-20'>
                     {pageData.pageData.pages.nodes[0].homepage.footerTitle}
                 </h2>
-                <p className='text-xl md:text-2xl leading-relaxed text-white w-full md:w-2/3 justify-self-end'>
+                <p className='text-xl md:text-2xl leading-relaxed text-white w-full lg:w-2/3 justify-self-end'>
                     {pageData.pageData.pages.nodes[0].homepage.footerContent}
                 </p>
            </div>
            <div className='container mx-auto py-32 md:flex justify-between items-center'>
                 <div>
-                    <p className='text-lg text-white font-normal mb-5 md:mb-0'>Built with passion in {date.getFullYear()}</p>
+                    <p className='text-md lg:text-lg text-white font-normal mb-5 md:mb-0'>Built with passion in {date.getFullYear()}</p>
                 </div>
                 <div className='md:flex gap-4'>
-                    <p className='text-lg text-white/50 font-normal mb-5 md:mb-0'>
+                    <p className='text-md lg:text-lg text-white/50 font-normal mb-5 md:mb-0'>
                         Local Time:
                         <span className='text-white block'>{currtime}</span>
                     </p>
-                    <p className='text-lg text-white/50 font-normal mb-5 md:mb-0'>
+                    <p className='text-md lg:text-lg text-white/50 font-normal mb-5 md:mb-0'>
                         Located:
                         <span className='text-white block'>Vancouver, BC, Canada</span>
                     </p>
-                    <p className='text-lg text-white/50 font-normal'>
+                    <p className='text-md lg:text-lg text-white/50 font-normal'>
                         Email:
                         <span className='text-white block'>{pageData.pageData.pages.nodes[0].homepage.footerEmail}</span>
                     </p>

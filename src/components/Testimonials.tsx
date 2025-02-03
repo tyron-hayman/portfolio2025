@@ -52,7 +52,7 @@ export default function Testimonials() {
                 : null }
               </div>
             </div>
-            <div className="w-full lg:w-8/12">
+            <div className="w-full lg:w-8/12 px-5 md:px-0">
               {pageData.pageData.pages.nodes[0].homepage.testimonials.map((testimonial : Testimonial, index : number) => {
                 return(
                   <TestimonialCard key={`test${index}`} {...testimonial} index={index} setIndex={setActiveIndex} />
