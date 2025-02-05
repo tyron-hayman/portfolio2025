@@ -46,7 +46,7 @@ export default function NavigationComponent() {
     }
 
     return (
-        <div className={`mainNav absolute md:fixed top-0 inset-x-0 z-40 p-4 xl:px-10 py-5 transition-all backdrop-blur-md`}>
+        <div className={`mainNav absolute md:fixed top-0 inset-x-0 z-40 p-4 xl:px-10 py-5 transition-all ${navActive ? 'backdrop-blur-sm' : null}`}>
             <div className="flex items-center justify-between">
                 <div className="mainLogo transition-all duration-500 hover:scale-120 w-1/3">
                     <p className="text-lg text-white font-bold uppercase block flex items-center">

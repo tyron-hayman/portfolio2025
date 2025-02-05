@@ -55,6 +55,10 @@ const GetPageData = ({ children } : { children : any }) => {
                     mainTextArray {
                         word
                     }
+                    socialLinks {
+                        link
+                        type
+                    }
                     }
                     workContent
                     footerContent

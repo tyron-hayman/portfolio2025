@@ -20,11 +20,11 @@ export default function About() {
   return (
     <div
       ref={aboutWrapper}
-      className="relative w-full py-20 md:py-40 aboutSection"
+      className="relative w-full mt-40 py-20 md:py-40 aboutSection"
     >
       {pageData.pageData ? (
         <div className="container mx-auto flex flex-wrap justify-between">
-          <div className="w-full my-40 px-5 md:px-0">
+          <div className="w-full px-5 md:px-0">
             <motion.h2
               className="text-white text-2xl md:text-6xl leading-snug md:leading-snug font-normal"
               animate={{ y: isInView ? 0 : 50, opacity: isInView ? 1 : 0 }}
@@ -104,12 +104,12 @@ const ServiceItem = ({
   return (
     <motion.li
       ref={service}
-      className="py-5 border-white/20 border-t-2 border-solid flex justify-between items-center"
+      className="py-5 border-white/20 border-t-2 border-solid md:flex justify-between items-center"
       animate={{ y: servInView ? 0 : 50, opacity: servInView ? 1 : 0 }}
       transition={{ duration: 0.75, ease: "easeInOut", delay: 0.15 * index }}
     >
       <span className="text-white text-4xl font-normal">{item.title}</span>
-      <span className="text-white/50 text-xl font-bold">{item.content}</span>
+      <span className="text-white/50 text-xl font-bold block md:inline-block">{item.content}</span>
     </motion.li>
   );
 };

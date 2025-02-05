@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import PageDataContext from "@/lib/getPageData";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowDown } from "@fortawesome/free-solid-svg-icons";
+import { faLinkedin, faDribbble, faGithub } from '@fortawesome/free-brands-svg-icons'
 
 const skillSet: Array<{ title: string; tech: Array<string> }> = [
   { title: "tech", tech: ["HTML", "CSS/SCSS", "Javascript", "PHP"] },
@@ -23,10 +24,10 @@ export default function Landing() {
       className={`landing_wrapper relative h-[100vh] flex items-center justify-center`}
     >
       <div className="relative container mx-auto px-5 md:px-0">
-        <div className="container relative z-2 pointer-events-none">
+        <div className="container relative z-2 pointer-events-none text-center">
           {pageData.pageData ? (
             <>
-              <h1 className="text-6xl leading-6xl font-black text-white">
+              <h1 className="text-[6vw] leading-[6vw] sm:text-[3vw] sm:leading-[3vw] font-black text-white/40">
                 {pageData.pageData.pages.nodes[0].homepage.initialBox.mainText}
               </h1>
               <h2 className="text-[14vw] leading-[14vw] text-white relative">
@@ -36,9 +37,25 @@ export default function Landing() {
           ) : null}
         </div>
       </div>
-      <div className="absolute inset-x-0 bottom-0 z-[2] mix-blend-difference">
-        <div className="container pb-10 mx-5 md:mx-auto">
-          <p className="text-white font-black text-xl inline-block">Scroll down for more <FontAwesomeIcon icon={faArrowDown} className="ml-5 animate-bounce"/></p>
+      <div className="absolute inset-x-0 bottom-0 z-[2]">
+        <div className="container pb-10 px-5 md:px-0 md:mx-auto flex justify-between items-center">
+          <p className="text-white font-black text-xl inline-block"><span className="hidden sm:inline-block">Scroll down for more</span> <FontAwesomeIcon icon={faArrowDown} className="ml-5 animate-bounce"/></p>
+          <div>
+          {pageData.pageData ? 
+            <>
+            {pageData.pageData.pages.nodes[0].homepage.initialBox.socialLinks.map((social : any, index : number) => {
+              let socialClass = 'text-white text-3xl ml-10'
+              return(
+                <>
+                  { social.type == 'faLinkedin' ?  <a key={`social${index}`} className={socialClass} href={social.link} target="_blank"><FontAwesomeIcon icon={faLinkedin} /></a> : null }
+                  { social.type == 'faGithub' ?  <a key={`social${index}`} className={socialClass} href={social.link} target="_blank"><FontAwesomeIcon icon={faGithub} /></a> : null }
+                  { social.type == 'faDribbble' ?  <a key={`social${index}`} className={socialClass} href={social.link} target="_blank"><FontAwesomeIcon icon={faDribbble} /></a> : null }
+                </>
+              )
+            })}
+            </>
+            : null}
+          </div>
         </div>
       </div>
     </div>
@@ -73,9 +90,9 @@ const Word = ({ word, index, active } : { word : string, index : number, active 
 
   return(
     <motion.span 
-      className={`${index == active ? 'relative' : 'absolute'} left-0 top-0 font-black capitalize`}
-      animate={{ opacity : index == active ? 1 : 0 }}
-      transition={{ duration : 0.75 }}
+      className={`${index == active ? 'relative' : 'absolute'} left-0 right-0 top-0 font-black capitalize`}
+      animate={{ opacity : index == active ? 1 : 0, filter : index == active ? 'blur(0px)' : 'blur(10px)' }}
+      transition={{ duration : 0.75, ease : 'easeInOut' }}
     >
       {word}
     </motion.span>

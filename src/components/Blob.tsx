@@ -3,6 +3,21 @@ import { useMemo, useRef, useEffect, useCallback } from "react";
 import { Color, Vector2 } from "three";
 import { ShaderMaterial } from 'three';
 import useDimension from "@/utils/useDimensions";
+import * as THREE from "three";
+import { GLTF } from "three-stdlib";
+import { useGLTF } from "@react-three/drei";
+import { Environment } from "@react-three/drei";
+import { useScroll } from "framer-motion";
+
+
+type GLTFResult = GLTF & {
+  nodes: {
+    connector: THREE.Mesh;
+  };
+  materials: {
+    base: THREE.MeshStandardMaterial;
+  };
+};
 
 const MovingPlane = () => {
   const mesh = useRef<any>(null);
@@ -12,6 +27,10 @@ const MovingPlane = () => {
   const updateMousePosition = useCallback((e : any) => {
     mousePosition.current = { x: e.pageX, y: e.pageY };
   }, []);
+
+  const { nodes, materials } = useGLTF(
+      "/assets/ctransformed.glb"
+    ) as GLTFResult;
 
   const uniforms = useMemo(
     () => ({
@@ -110,24 +129,63 @@ const MovingPlane = () => {
   }, [updateMousePosition]);
 
   return (
-    <group>
-    <mesh ref={mesh} position={[0, 0, 0]} rotation={[0, 0, 0]} scale={10}>
-      <planeGeometry args={[2, 2, 100, 100]} />
+    <>
+    <group position={[0, 0, -1]}>
+    <mesh ref={mesh} position={[0, 0, 0]} rotation={[0, 0, 0]}>
+      <planeGeometry args={[5, 2, 50, 50]} />
       <shaderMaterial
         fragmentShader={shaderMaterial.fragmentShader}
         vertexShader={shaderMaterial.vertexShader}
         uniforms={uniforms}
-        wireframe={false}
+        depthWrite={false}
+        wireframe={true}
       />
     </mesh>
     </group>
+    </>
+  );
+};
+
+const HeadModel = () => {
+  const group = useRef<any>();
+  let rotatex = 0;
+  const { nodes, materials } = useGLTF(
+    "/assets/ctransformed.glb"
+  ) as GLTFResult;
+  const { scrollYProgress } = useScroll()
+
+  useFrame((state) => {
+    const { clock } = state;
+    if ( group.current ) {
+      group.current.rotation.z = clock.getElapsedTime() / 5;
+      group.current.rotation.y = clock.getElapsedTime() / 5;
+      group.current.position.y = scrollYProgress.get() * 1.5
+    }
+  });
+
+  return (
+    <>
+      <Environment preset="studio" environmentIntensity={1} />
+      <group ref={group} dispose={null} position={[0, 0, 3.5]}>
+        <mesh
+          castShadow
+          receiveShadow
+          geometry={nodes.connector.geometry}
+          material={materials.base}
+          scale={1.2}
+          position={[0, 0, 0]}
+          rotation={[45, 45, 0]}
+        ><meshStandardMaterial color="#4c1d95" metalness={0.2} roughness={0.9} map={materials.base.map}  /></mesh>
+      </group>
+    </>
   );
 };
 
 const Scene = () => {
   return (
-    <Canvas camera={{ position: [0,0,0] }} shadows dpr={[1, 2]} style={{ background : '#0f172a'}}>
+    <Canvas camera={{ position: [0, 0, 5], fov: 17.5, near: 0.1, far: 100 }} gl={{ antialias: false }} shadows dpr={[1, 2]} style={{ background : '#0f172a'}}>
         <MovingPlane />
+        <HeadModel />
     </Canvas>
   );
 };
