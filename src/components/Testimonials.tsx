@@ -27,32 +27,24 @@ export default function Testimonials() {
   return (
     <motion.div
       ref={testimonialsWrap}
-      className="relative w-full py-40 mt-80"
+      className="relative w-full py-40"
     >
       {pageData.pageData ? (
           <>
           <div ref={testimonialsTitle} className="w-full">
-            <Marquee phrase="Kind Words" />
+            <Marquee word1="kind" word2="words" />
           </div>
           <div className="container mx-auto relative flex mt-32 md:mt-[300px] justify-between">
-            <div className="w-3/12 hidden lg:block">
+            <div className="w-3/12 hidden xl:block">
               <div className="sticky top-[150px]">
-                <h2 className="text-[14vw] aspect-video font-bold bondini text-white flex items-start justify-start overflow-hidden">
-                  <span>0</span>
-                  <motion.span ref={counter} className="relative" animate={{ y : `-${33 * activeIndex}%` }}>
-                    {pageData.pageData.pages.nodes[0].homepage.testimonials.map((test: Testimonial, index : number) => {
-                      return(<span className="block" key={`num${index}`}>{index + 1}</span>)
-                    })}
-                  </motion.span>
-                  </h2>
                 { supportsWebGL ? 
-                <div className="w-3/4 aspect-square -translate-y-20">
+                <div className="w-full aspect-square">
                   {Head ? <Head progress={scrollYProgress} /> : null}
                 </div>
                 : null }
               </div>
             </div>
-            <div className="w-full lg:w-8/12 px-5 md:px-0">
+            <div className="w-full xl:w-8/12 px-5 md:px-0">
               {pageData.pageData.pages.nodes[0].homepage.testimonials.map((testimonial : Testimonial, index : number) => {
                 return(
                   <TestimonialCard key={`test${index}`} {...testimonial} index={index} setIndex={setActiveIndex} />

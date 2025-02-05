@@ -1,19 +1,19 @@
 import type { Metadata } from "next";
-import { Instrument_Sans, Poppins } from 'next/font/google'
+import { Urbanist, Vidaloka } from 'next/font/google'
 import '../app/styles/global.css';
 import { ApolloWrapper } from "./ApolloWrapper";
 import { GoogleAnalytics } from '@next/third-parties/google'
 
-const instrument_sans = Instrument_Sans({
+const urbanist = Urbanist({
   subsets: ['latin'],
-  weight: ["400", "600", "700"],
+  weight: ["400", "600", "700", "900"],
   display: 'swap',
-  variable: '--font-instrument_sans',
+  variable: '--font-urbanist_sans',
 });
 
-const poppins = Poppins({
+const great_vibes = Vidaloka({
   subsets: ['latin'],
-  weight: ["400", "600", "900"],
+  weight: ["400"],
   display: 'swap',
   variable: '--font-bondini',
 });
@@ -34,7 +34,7 @@ export default function RootLayout({
       <meta name="mobile-web-app-capable" content="yes"></meta>
       <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"></meta>
       <body
-        className={`${instrument_sans.variable} ${poppins.variable} antialiased`}
+        className={`${urbanist.variable} ${great_vibes.variable} antialiased`}
       >
           <ApolloWrapper>{children}</ApolloWrapper>
           <GoogleAnalytics gaId="G-G084CLT275" />

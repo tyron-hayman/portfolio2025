@@ -60,14 +60,14 @@ const MovingPlane = () => {
             // Define blob positions with time-based movement
             vec2 p1 = vec2(cos(u_time * 0.2) * 0.4, sin(u_time * 0.3) * 0.7);
             vec2 p2 = vec2(sin(u_time * 0.6) * 0.2 + 0.2, cos(u_time * 0.6) * 1.2);
-            vec2 p3 = vec2(cos(u_time * 0.4) * 0.3 - 0.3, cos(u_time * 0.3) * 0.4);
-            vec2 p4 = vec2(sin(u_time * 0.4) * 0.6, sin(u_time * 0.5) * 0.4 - 0.9);
+            vec2 p3 = vec2(cos(u_time * 0.4) * 0.5 - 0.3, cos(u_time * 0.3) * 0.4);
+            vec2 p4 = vec2(sin(u_time * 0.4) * 0.6, sin(u_time * 0.5) * 0.4 - 0.5);
 
             // Define blob sizes
-            float size = 0.4;
-            float size2 = 0.2;
-            float size3 = 0.3;
-            float size4 = 0.1;
+            float size = 0.1;
+            float size2 = 0.15;
+            float size3 = 0.1;
+            float size4 = 0.15;
 
             // Compute distance fields
             float d1 = blob(uv, p1, size);
@@ -76,13 +76,13 @@ const MovingPlane = () => {
             float d4 = blob(uv, p4, size4);
 
             // Smoothly merge blobs using smooth minimum function
-            float d = smin(smin(d1, d2, 10.0), smin(d3, d4, 10.0), 10.0);
+            float d = smin(smin(d1, d2, 5.0), smin(d3, d4, 10.0), 6.0);
 
             // Convert distance field to soft alpha
-            float alpha = smoothstep(0.1, 0.0, d);
+            float alpha = smoothstep(0.75, 0.05, d);
 
             // Blue-gray color
-            vec3 color = mix(vec3(0.058823529411764705, 0.09019607843137255, 0.16470588235294117), vec3(0.058823529411764705, 0.09019607843137255, 0.16470588235294117), alpha);
+            vec3 color = mix(vec3(0.21568627450980393, 0.18823529411764706, 0.6392156862745098), vec3(0.058823529411764705, 0.09019607843137255, 0.16470588235294117), alpha);
 
             gl_FragColor = vec4(color, alpha);
         }

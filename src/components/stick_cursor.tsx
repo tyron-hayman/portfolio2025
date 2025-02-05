@@ -9,7 +9,7 @@ import { faArrowUpRightFromSquare, faArrowDown, faHandSpock, faHandsClapping, fa
 export default function StickCursor() {
     const [cursorActive, setCursorActive] = useState<string>("")
     const pageData = useContext(PageDataContext);
-    const cursorSize = 50;
+    const cursorSize = 25;
     const mouse = {
         x: useMotionValue(0),
         y: useMotionValue(0)

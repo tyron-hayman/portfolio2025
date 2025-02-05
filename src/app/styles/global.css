@@ -56,22 +56,19 @@ table {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
-  cursor: none;
-}
-@media (max-width: 1250px) {
-  *, html {
-    cursor: pointer;
-  }
 }
 
 body {
-  font-family: var(--font-instrument_sans), sans-serif;
+  font-family: var(--font-urbanist_sans), sans-serif;
   background: #000000; /* Chrome 10-25, Safari 5.1-6 */
   background: linear-gradient(to right, #070014, #000000); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
 strong {
-  font-weight: 900;
+  font-weight: 400;
+  font-family: var(--font-bondini), sans-serif !important;
+  font-style: italic;
+  text-transform: lowercase;
 }
 
 .bondini {
@@ -132,8 +129,8 @@ strong {
   justify-content: space-around;
   gap: var(--gap);
   min-width: 100%;
-  animation: scroll 10s linear infinite;
-  -webkit-animation: scroll 10s linear infinite;
+  animation: scroll 20s linear infinite;
+  -webkit-animation: scroll 20s linear infinite;
 }
 
 @keyframes scroll {

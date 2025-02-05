@@ -21,7 +21,7 @@ export default function Footer() {
         {pageData.pageData ? (
             <>
            <div className='container mx-auto mt-20 md:mt-60 md:grid'>
-                <h2 className='text-[18vw] md:text-[17vw] text-white font-black bondini w-full mb-20'>
+                <h2 className='text-[18vw] md:text-[17vw] text-white font-black w-full mb-20'>
                     {pageData.pageData.pages.nodes[0].homepage.footerTitle}
                 </h2>
                 <p className='text-xl md:text-2xl leading-relaxed text-white w-full lg:w-2/3 justify-self-end'>

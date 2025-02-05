@@ -52,11 +52,19 @@ const GetPageData = ({ children } : { children : any }) => {
                         mediaItemUrl
                     }
                     mainText
+                    mainTextArray {
+                        word
+                    }
                     }
                     workContent
                     footerContent
                     footerTitle
                     footerEmail
+                    services {
+                        title
+                        content
+                    }
+                    servicesTitle
                 }
             }
         }

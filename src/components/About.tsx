@@ -6,14 +6,7 @@ import PageDataContext from "@/lib/getPageData";
 export default function About() {
   const pageData = useContext(PageDataContext);
   const aboutWrapper = useRef(null);
-  const aboutTitle = useRef(null);
-  const aboutContent = useRef(null);
-  const { scrollYProgress } = useScroll({
-    target: aboutWrapper,
-    offset: ["-0.5 start", "600px"],
-  });
-  const y = useTransform(scrollYProgress, [0, 1], [0, 175]);
-  const y_sub = useTransform(scrollYProgress, [0, 1], [0, 275]);
+  const services = useRef(null);
   const isInView = useInView(aboutWrapper, { amount: 0.2, once: true });
 
   const handleHover = () => {
@@ -25,52 +18,98 @@ export default function About() {
   };
 
   return (
-    <motion.div
+    <div
       ref={aboutWrapper}
       className="relative w-full py-20 md:py-40 aboutSection"
-      animate={{ y: isInView ? 0 : 50, opacity: isInView ? 1 : 0 }}
-      transition={{ duration: 1, ease: "easeInOut" }}
     >
       {pageData.pageData ? (
         <div className="container mx-auto flex flex-wrap justify-between">
-          <div className="w-full px-5 md:px-0">
+          <div className="w-full my-40 px-5 md:px-0">
             <motion.h2
-              ref={aboutTitle}
-              className="text-white text-5xl leading-[5xl] md:text-8xl md:leading-[8xl] mb-10 font-black bondini w-full lg:w-2/3"
-              style={{ y }}
-              transition={{ ease: "easeInOut" }}
+              className="text-white text-2xl md:text-6xl leading-snug md:leading-snug font-normal"
+              animate={{ y: isInView ? 0 : 50, opacity: isInView ? 1 : 0 }}
+              transition={{ duration: 0.75, ease: "easeInOut" }}
             >
-              {pageData.pageData.pages.nodes[0].homepage.about.title
+              {pageData.pageData.pages.nodes[0].homepage.about.content
                 .replace(/<p[^>]*>/g, "")
                 .replace(/<\/p>/g, "")}
             </motion.h2>
           </div>
-          <div className="w-full lg:w-3/12 mb-10 md:mb-20 xl:mb-0 px-5 md:px-0">
-            <motion.div
-              className="w-full aspect-square rounded-3xl !bg-cover graysale black"
-              style={{
-                background : `url(${pageData.pageData.pages.nodes[0].homepage.initialBox.landingImage.mediaItemUrl}) center center no-repeat`,
-                y: y_sub
-              }}
-              transition={{ ease: "easeInOut" }}
-              onMouseOver={handleHover}
-              onMouseLeave={handleHoverLeave}
-            ></motion.div>
-          </div>
-          <div className="w-full lg:w-7/12 px-5 md:px-0">
-            <motion.h2
-                ref={aboutContent}
-                className="text-white text-2xl md:text-3xl leading-relaxed font-normal"
-                style={{ y: y_sub }}
-                transition={{ ease: "easeInOut" }}
-                >
-                {pageData.pageData.pages.nodes[0].homepage.about.content
-                    .replace(/<p[^>]*>/g, "")
-                    .replace(/<\/p>/g, "")}
-                </motion.h2>
+          <div
+            ref={services}
+            className="w-full relative block lg:flex justify-between my-40 px-5 md:px-0"
+          >
+            <div className="w-full md:w-4/12 mb-10 md:mb-20 xl:mb-0 px-5 md:px-0">
+              <AboutImage
+                src={pageData.pageData.pages.nodes[0].homepage.initialBox.landingImage.mediaItemUrl}
+                hover={handleHover}
+                leave={handleHoverLeave}
+              />
+            </div>
+            <div className="w-full md:w-7/12 mb-10 md:mb-20 xl:mb-0 px-5 md:px-0">
+              <h3 className="text-white/50 text-3xl font-black">
+                {pageData.pageData.pages.nodes[0].homepage.servicesTitle}
+              </h3>
+              <div className="mt-10">
+                <ul>
+                  {pageData.pageData.pages.nodes[0].homepage.services.map(
+                    (service: any, index: number) => {
+                      return (
+                        <ServiceItem
+                          item={service}
+                          index={index}
+                          key={`serv${index}`}
+                        />
+                      );
+                    }
+                  )}
+                </ul>
+              </div>
+            </div>
           </div>
         </div>
       ) : null}
-    </motion.div>
+    </div>
   );
 }
+
+const AboutImage = ({ src, hover, leave } : { src : string, hover : any, leave : any}) => {
+  const image = useRef<any>(null)
+  const imageInView = useInView(image, { amount: 0.1, once: true });
+  return(
+    <motion.div
+        ref={image}
+        className="w-full aspect-square rounded-3xl !bg-cover graysale black"
+        style={{
+          background: `url(${src}) center center no-repeat`,
+        }}
+        animate={{ y: imageInView ? 0 : 50, opacity: imageInView ? 1 : 0 }}
+        transition={{ duration: 0.75, ease: "easeInOut" }}
+        onMouseOver={hover}
+        onMouseLeave={leave}
+      ></motion.div>
+  )
+}
+
+const ServiceItem = ({
+  item,
+  index,
+}: {
+  item: any;
+  index: number;
+}) => {
+  const service = useRef<any>(null)
+  const servInView = useInView(service, { amount: 0.1, once: true });
+
+  return (
+    <motion.li
+      ref={service}
+      className="py-5 border-white/20 border-t-2 border-solid flex justify-between items-center"
+      animate={{ y: servInView ? 0 : 50, opacity: servInView ? 1 : 0 }}
+      transition={{ duration: 0.75, ease: "easeInOut", delay: 0.15 * index }}
+    >
+      <span className="text-white text-4xl font-normal">{item.title}</span>
+      <span className="text-white/50 text-xl font-bold">{item.content}</span>
+    </motion.li>
+  );
+};

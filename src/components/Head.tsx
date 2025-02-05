@@ -59,7 +59,7 @@ const Model = ({ scrollprogress }: { scrollprogress: any }) => {
           scale={10}
           position={[0, 0, 0]}
           rotation={[45, 45, 0]}
-        ><meshStandardMaterial color="#111111" /></mesh>
+        ><meshStandardMaterial color="#4c1d95" metalness={0.2} roughness={0.9} map={materials.base.map}  /></mesh>
       </group>
     </>
   );

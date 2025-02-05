@@ -3,6 +3,7 @@ import React, { useContext, useEffect, useRef, useState } from "react";
 import { motion, useScroll, useTransform, useInView, useMotionValue } from "framer-motion";
 import PageDataContext from "@/lib/getPageData";
 import useDimension from "@/utils/useDimensions";
+import Marquee from "./Marquee";
 
 export default function Projects() {
   const pageData = useContext(PageDataContext);
@@ -23,13 +24,14 @@ export default function Projects() {
   }, [])
 
     return (
+      <>
+      <motion.div className="w-full my-60">
+          <Marquee word1="recent" word2="projects" />
+        </motion.div>
       <div
         ref={projectWrapper}
         className="w-full relative projectSection"
       >
-        <motion.div className="container mx-auto mb-40 md:mb-80 sticky top-[100px]" style={{ scale, filter : blur, opacity }}>
-          <h2 className="text-white text-5xl md:text-7xl font-normal bondini px-5 md:px-0">Recent Work</h2>
-        </motion.div>
         <div ref={projectContainer} className="w-full relative">
         {pageData.pageData ? (
             <>
@@ -52,6 +54,7 @@ export default function Projects() {
         ) : null}
         </div>
       </div>
+      </>
     );
 }
 
