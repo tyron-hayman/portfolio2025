@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Urbanist, Vidaloka } from 'next/font/google'
 import '../app/styles/global.css';
 import { ApolloWrapper } from "./ApolloWrapper";
-import { GoogleAnalytics } from '@next/third-parties/google'
+import { GoogleAnalytics, GoogleTagManager } from '@next/third-parties/google'
 
 const urbanist = Urbanist({
   subsets: ['latin'],
@@ -37,6 +37,7 @@ export default function RootLayout({
         className={`${urbanist.variable} ${great_vibes.variable} antialiased`}
       >
           <ApolloWrapper>{children}</ApolloWrapper>
+          <GoogleTagManager gtmId="GTM-T3W65LJK" />
           <GoogleAnalytics gaId="G-G084CLT275" />
       </body>
     </html>
